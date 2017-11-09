@@ -88,18 +88,20 @@ $groupe=$_POST['groupe'];
 //$password="MLAT74";
 //$dbname="PROJET_ETUDIANTS";
 try{
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
    
     // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	if (isset($groupe)){
+          
 $stmt = $conn->prepare("SELECT utilisateur.*, etudiant.*
                         FROM utilisateur, etudiant
                         WHERE utilisateur.NumUtilisateur=etudiant.NumUtilisateur
                         AND etudiant.Promotion= :Promotion 
-                        AND etudiant.groupe= :groupe ");
+                        AND etudiant.groupe=:groupe");
  
  $stmt->bindParam (':Promotion',$Promotion);
- $stmt->bindParam (':groupe',$groupe);
+ $b = "G".$groupe;
+ $stmt->bindParam (':groupe',$b);
 
 
 $stmt->execute();
