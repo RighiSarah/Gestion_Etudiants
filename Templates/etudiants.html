@@ -52,22 +52,22 @@
                         <body>
                             <div class="panel panel-default center">
                                 <header>
-                                    <h3>S&Eacute;LECTION D'UN GROUPE ET D'UNE PROMOTION</h3>
+                                    <h3>Selection d'un Groupe et d'une promotion</h3>
                                 </header>
-
-                            </br>
-
-                                <h4><b><font color=black><i class="fa fa-check-square"></i> Choix du groupe</font></b></h4>
-
-                                <p>(Cocher les 2 cases pour afficher l'ensemble des élèves)</p>
+                                <h4><b><font color=black><!--<i class="fa fa-check-square"></i> --> Choix du groupe</font></b></h4>
+                                
+                               <!-- <p>(cocher les 2 cases pour afficher l'ensemble des élèves)</p> -->
                                     <form action="req.php" method="post">
-                                            <input type="checkbox" name="groupe" value="G1"> Groupe 1
-                                            <input type="checkbox" name="groupe" value="G2"> Groupe 2    
-                                </br>
-                                </br>
-
-                                <h4><b><font color=black><i class="fa fa-list-alt"></i> Choix de la promotion</font></b></h4>
-                                <select name="Promotion" style="height: 30px;">
+                                           <!-- <input type="checkbox" name="groupe" value="G1"> Groupe 1
+                                            <input type="checkbox" name="groupe" value="G2"> Groupe 2 -->
+                                   Groupe :  <input type="text" name="groupe" > 
+                                    
+                            <br/>
+                             <br/>
+                                <h4><b><font color=black><!--<i class="fa fa-list-alt"></i> --> Choix de la promotion</font></b></h4>
+                               
+                                   Promotion :  <input type="text" name="Promotion" > 
+                                <!-- <select name="Promotion">
                                     <option value="2007">Promotion: 2007</option>
                                     <option value="2008">Promotion: 2008</option>
                                     <option value="2009">Promotion: 2009</option>
@@ -80,7 +80,7 @@
                                     <option value="2016">Promotion: 2016</option>
                                     <option value="2017">Promotion: 2017</option>
                                     <option value="2018">Promotion: 2018</option>
-                                </select>
+                                </select> -->
 
                                 <br/><br/><button class="btn btn-primary" action="list_groupe.php" type="submit"><i class="fa fa-check"></i> Valider</button></br></br>
                             </form>
