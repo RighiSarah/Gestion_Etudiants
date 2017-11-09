@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    {% include 'includes/$head.html' %}
+
+</head>
+
+<body class="pageaccueil accueil">
+
+    <div class="bordure"></div>
+
+
+    <div id="bandeau_deco">
+
+        {% include 'includes/$bandeau_deco.html' %}
+
+    </div>
+    <!-- #bandeau_deco -->
+
+    <div id="page_deco">
+
+        <div id="page">
+
+
+            <div id="navigation">
+
+            </div>
+
+            <hr class="separateur_sections_page" />
+            <div id="contenu_deco">
+
+                <div id="bandeau_illustration"></div>
+
+                {% include 'includes/$header_nav.html' %}
+
+                {% include 'includes/$menu.html' %}
+
+                <div id="avec_nav_avec_encadres" class="contenu">
+
+
+                    <div id="zone1_accueilsite">
+                        <div class="liste_etu">
+                            <h1>Erreur {{ id }}</h1>
+                        </div>
+                    </div>
+                    <!-- fin #zone1 -->
+                </div>
+                <!-- fin #avec_nav_avec_encadres .contenu -->
+
+
+
+                <hr class="separateur_sections_page" />
+
+
+                <div id="encadres">
+
+                    {% include 'includes/$encadres.html' %}
+
+                </div>
+                <!-- #encadres -->
+
+            </div>
+            <!-- #contenu_deco -->
+            <div class="separateur"></div>
+
+        </div>
+        <!-- #page -->
+    </div>
+    <!-- #page_deco -->
+
+    <div class="bordure"></div>
+    <div id="pied_deco">
+
+        {% include 'includes/$pied_deco.html' %}
+
+    </div>
+    <!-- #pied_deco -->
+
+</body>
+
+</html>

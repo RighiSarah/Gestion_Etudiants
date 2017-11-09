@@ -1,0 +1,100 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww14160\viewh15160\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 -- phpMyAdmin SQL Dump\
+-- version 4.7.1\
+-- https://www.phpmyadmin.net/\
+--\
+-- H\'f4te : localhost:8889\
+-- G\'e9n\'e9r\'e9 le :  mar. 04 juil. 2017 \'e0 11:50\
+-- Version du serveur :  5.6.35\
+-- Version de PHP :  7.1.1\
+\
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";\
+SET time_zone = "+00:00";\
+\
+--\
+-- Base de donn\'e9es :  `base_suivi_etu`\
+--\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Structure de la table `Diplome_Obtenu`\
+--\
+\
+CREATE TABLE `Diplome_Obtenu` (\
+  `ID_Diplome` int(11) NOT NULL,\
+  `Libelle_Dip` varchar(45) NOT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Structure de la table `Etudiants`\
+--\
+\
+CREATE TABLE `Etudiants` (\
+  `ID_Etudiant` int(11) NOT NULL,\
+  `Nom_Etu` varchar(20) NOT NULL,\
+  `Prenom_Etu` varchar(20) NOT NULL,\
+  `Email_1` varchar(45) NOT NULL,\
+  `Email_2` varchar(45) DEFAULT NULL,\
+  `Telephone` int(10) DEFAULT NULL,\
+  `Adresse_Etu` varchar(90) DEFAULT NULL,\
+  `Code_Postal` int(5) DEFAULT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Structure de la table `Formation`\
+--\
+\
+CREATE TABLE `Formation` (\
+  `ID_Formation` int(11) NOT NULL,\
+  `Type_Formation` varchar(20) NOT NULL,\
+  `Libelle_Formation` varchar(45) NOT NULL,\
+  `ID_Etudiant` int(11) NOT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Structure de la table `Metier`\
+--\
+\
+CREATE TABLE `Metier` (\
+  `ID_Metier` int(11) NOT NULL,\
+  `Intitule` varchar(30) NOT NULL,\
+  `Employeur` varchar(20) NOT NULL,\
+  `Date_debut` date NOT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Structure de la table `Nationalite`\
+--\
+\
+CREATE TABLE `Nationalite` (\
+  `ID_Nationalite` int(11) NOT NULL,\
+  `Pays_Origine` varchar(20) NOT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+\
+-- --------------------------------------------------------\
+\
+--\
+-- Structure de la table `Ville`\
+--\
+\
+CREATE TABLE `Ville` (\
+  `ID_Ville` int(11) NOT NULL,\
+  `Nom_Ville` varchar(20) NOT NULL,\
+  `Code_postal` int(5) DEFAULT NULL\
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;\
+}

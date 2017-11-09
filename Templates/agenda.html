@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    {% include 'includes/$head.html' %}
+
+</head>
+
+<body class="pageaccueil accueil">
+
+    <div class="bordure"></div>
+
+
+    <div id="bandeau_deco">
+
+        {% include 'includes/$bandeau_deco.html' %}
+
+    </div>
+    <!-- #bandeau_deco -->
+
+    <div id="page_deco">
+
+        <div id="page">
+
+
+            <div id="navigation">
+
+            </div>
+
+            <hr class="separateur_sections_page" />
+            <div id="contenu_deco">
+
+                <div id="bandeau_illustration"></div>
+
+                {% include 'includes/$header_nav.html' %}
+
+                {% include 'includes/$menu.html' %}
+
+                <div id="avec_nav_avec_encadres" class="contenu">
+
+                          <table style="width:100%;" class="table table-bordered">
+                            <tr style="height:50px;">
+                              <td colspan="7" align="center">
+                                <a href="?mois={{ num_mois }}&amp;annee={{ num_an-1 }}"><i class="fa fa-chevron-left"></i></a>
+                                &nbsp;&nbsp;
+                                {{ num_an }}
+                                &nbsp;&nbsp;
+                                <a href="?mois={{ num_mois }}&amp;annee={{ num_an+1 }}"><i class="fa fa-chevron-right"></i></a>
+                              </td>
+                            </tr>
+                            <tr style="height:50px;">
+                              <td colspan="7" align="center">
+                                <a href="?mois={{ num_mois-1 }}&amp;annee={{ num_an }}"><i class="fa fa-chevron-left"></i></a>
+                                &nbsp;&nbsp;
+                                {% for key,month in tab_mois %}
+                                {% if key==num_mois %} {{ month }} {% endif %}
+                                {% endfor %}
+                                &nbsp;&nbsp;
+                                <a href="?mois={{ num_mois+1 }}&amp;annee={{ num_an }}"><i class="fa fa-chevron-right"></i></a>
+                              </td>
+                            </tr>
+                            <tr style="height:50px;">
+                              {% for jour in tab_jours %}
+                              <td style="width:14.2857142857%;" class="center">{{ jour }}</td>
+                              {% endfor %}
+                            </tr>
+							{% if num_mois < 10 %}
+							  {% set num_mois = "0" ~ num_mois %}
+							{% endif %}
+                            {% for row in tab_cal %}
+                            <tr style="height:100px;">
+                              {% for cell in row %}
+                              <td style="width:14.2857142857%;text-align:center;{% if '*' in cell %}background-color:#F2F2F2;{% endif %}">
+                                {{ cell|replace({'*': ""}) }}
+                                {% for reunion in reunions %}
+								  
+                                  {% if reunion.date_reunion == num_an ~ '-' ~ num_mois ~ '-' ~ (cell|replace({'*': ""})) %}
+                                  <hr/>
+                                  <a href="reunions.php?reunion={{ reunion.url }}">{{ reunion.heure_debut }} : {{ reunion.objet_reunion }}</a>
+								  {% endif %}
+                                {% endfor %}
+                              </td>
+                              {% endfor %}
+                            </tr>
+                            {% endfor %}
+                          </table>
+                </div>
+                <!-- fin #avec_nav_avec_encadres .contenu -->
+
+
+
+                <hr class="separateur_sections_page" />
+
+
+                <div id="encadres">
+
+                    {% include 'includes/$encadres.html' %}
+
+                </div>
+                <!-- #encadres -->
+
+            </div>
+            <!-- #contenu_deco -->
+            <div class="separateur"></div>
+
+        </div>
+        <!-- #page -->
+    </div>
+    <!-- #page_deco -->
+
+    <div class="bordure"></div>
+    <div id="pied_deco">
+
+        {% include 'includes/$pied_deco.html' %}
+
+    </div>
+    <!-- #pied_deco -->
+
+</body>
+
+</html>

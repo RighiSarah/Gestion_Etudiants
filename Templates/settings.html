@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    {% include 'includes/$head.html' %}
+
+</head>
+
+<body class="pageaccueil accueil">
+
+    <div class="bordure"></div>
+
+
+    <div id="bandeau_deco">
+
+        {% include 'includes/$bandeau_deco.html' %}
+
+    </div>
+    <!-- #bandeau_deco -->
+
+    <div id="page_deco">
+
+        <div id="page">
+
+
+            <div id="navigation">
+
+            </div>
+
+            <hr class="separateur_sections_page" />
+            <div id="contenu_deco">
+
+                <div id="bandeau_illustration"></div>
+
+                {% include 'includes/$header_nav.html' %}
+
+                {% include 'includes/$menu.html' %}
+
+                <div id="avec_nav_avec_encadres" class="contenu">
+
+                  <ul class="breadcrumb">
+                    <li><a href="index.php">Accueil</a></li>
+                    <li>&gt;</li>
+                    <li><a href="settings.php">Paramètres</a></li>
+                  </ul>
+
+
+                  <div class="panel panel-default">
+                    <header class="center">
+                      <h3>Statistiques</h3>
+                    </header>
+                    <div class="panel-body">
+                      <p>
+                        Etudiants : {{ CountDoctorants }}<br/>
+                        
+                        Documents : {{ CountDocuments }}
+                      </p>
+                    </div>
+                  </div>
+
+                  <!--<div class="panel panel-default">
+                    <header class="center">
+                      <h3>Sauvegarde</h3>
+                    </header>
+                    <div class="panel-body">
+                      <p>
+                        ...
+                      </p>
+                    </div>
+                  </div>-->
+
+                  <div class="panel panel-default">
+                    <header class="center">
+                      <h3>Compte</h3>
+                    </header>
+                    <div class="panel-body">
+                      <p>
+                        {% if form_error == 'PWD_ERROR' %}
+                        <span>Les mots de passes ne correspondent pas</span>
+                        {% endif %}
+                        <form action="" method="post" enctype="multipart/form-data">
+                          <table class="table" style="text-align:left;">
+                            <tr>
+                              <td class="center">
+                                <img style="border-radius:360px;" width="100" height="100" src="{{ user.photoUtilisateur }}"/>
+                              </td>
+                              <td colspan="2">
+                                <input style="width:95.5%;" type="file" name="photo"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-left: 25px;">
+                                 Nom Prénom
+                              </td>
+                              <td>
+                                <input style="width:90%;color:#000000;" name="prenom" type="text" value="{{ user.PrenomUtilisateur }}" placeholder="Prénom"/>
+                              </td>
+                              <td>
+                                <input style="width:91%;color:#000000;" type="text" name="nom" value="{{ user.NomUtilisateur }}" placeholder="Nom"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-left: 25px;">
+                                Email
+                              </td>
+                              <td colspan="2">
+                                <input style="width:95.5%;color:#000000;" type="text" name="email" value="{{ user.EmailUtilisateur }}" placeholder="Email"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-left: 25px;">
+                                Téléphone
+                              </td>
+                              <td colspan="2">
+                                <input style="width:95.5%;color:#000000;" type="text" name="tel" value="{{ user.telUtilisateur }}" placeholder="Téléphone"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-left: 25px;">
+                                Née le
+                              </td>
+                              <td colspan="2">
+                                <input style="width:95.5%;color:#000000;" type="text" name="datenaiss" value="{{ user.DateNaissanceUtilisateur }}"  placeholder="Date de naissance"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td rowspan="3" style="padding-left: 25px;">
+                                Adresse
+                              </td>
+                              <td colspan="2">
+                                <input style="width:95.5%;color:#000000;" type="text" name="rue" value="{{ user.AdrRueUtilisateur }}" placeholder="Adresse"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <input style="width:90%;color:#000000;" type="text" name="cp" value="{{ user.AdrCPUtilisateur }}" placeholder="Code postal"/>
+                              </td>
+                              <td>
+                                <input style="width:91%;color:#000000;" type="text" name="ville" value="{{user.AdrVilleUtilisateur }}" placeholder="Ville"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td colspan="2">
+                                <input style="width:95.5%;color:#000000;" type="text" name="pays" value="{{ user.AdrPaysUtilisateur }}" placeholder="Pays"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-left: 25px;">
+                                Nationalité
+                              </td>
+                              <td colspan="2">
+                                <input style="width:95.5%;color:#000000;" type="text" name="nationalite" value="{{ user.nationaliteUtilisateur }}" placeholder="Nationalité"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-left: 25px;">
+                                Mot de passe
+                              </td>
+                              <td>
+                                <input style="width:90%;color:#000000;" type="password" name="pwd1" placeholder="Nouveau mot de passe"/>
+                              </td>
+                              <td>
+                                <input style="width:91%;color:#000000;" type="password" name="pwd2" placeholder="Confirmer le nouveau mot de passe"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td colspan="3" class="center">
+                                <br/>
+                                <button class="btn btn-primary" type="submit" style="font-size: 15px;">
+                                 Mettre à jour</button>
+                              </td>
+                            </tr>
+                          </table>
+                        </form>
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- fin #avec_nav_avec_encadres .contenu -->
+
+
+
+                <hr class="separateur_sections_page" />
+
+
+                <div id="encadres">
+
+                    {% include 'includes/$encadres.html' %}
+
+                </div>
+                <!-- #encadres -->
+
+            </div>
+            <!-- #contenu_deco -->
+            <div class="separateur"></div>
+
+        </div>
+        <!-- #page -->
+    </div>
+    <!-- #page_deco -->
+
+    <div class="bordure"></div>
+    <div id="pied_deco">
+
+        {% include 'includes/$pied_deco.html' %}
+
+    </div>
+    <!-- #pied_deco -->
+
+</body>
+
+</html>

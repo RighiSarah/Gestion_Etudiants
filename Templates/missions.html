@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    {% include 'includes/$head.html' %}
+
+</head>
+
+<body class="pageaccueil accueil">
+
+    <div class="bordure"></div>
+
+
+    <div id="bandeau_deco">
+
+        {% include 'includes/$bandeau_deco.html' %}
+
+    </div>
+    <!-- #bandeau_deco -->
+
+    <div id="page_deco">
+
+        <div id="page">
+
+
+            <div id="navigation">
+
+            </div>
+
+            <hr class="separateur_sections_page" />
+            <div id="contenu_deco">
+
+                <div id="bandeau_illustration"></div>
+
+                {% include 'includes/$header_nav.html' %}
+
+                {% include 'includes/$menu.html' %}
+
+                <div id="avec_nav_avec_encadres" class="contenu">
+
+                  <ul class="breadcrumb">
+                    <li><a href="index.php">Accueil</a></li>
+                    <li>&gt;</li>
+                    <li><a href="missions.php">Missions</a></li>
+                    {% if detail is not empty %}
+                    <li>&gt;</li>
+                    <li><a href="missions.php?mission={{ detail.url }}">{{ detail.objet_mission }}</a></li>
+                    {% endif %}
+                    {% if edit %}
+                    <li>&gt;</li>
+                    <li><a href="missions.php?edit={{ detail.url }}">Modification</a></li>
+                    {% endif %}
+                    {% if add %}
+                    <li><a href="missions.php?add=1">Ajout</a></li>
+                    {% endif %}
+                  </ul>
+
+                  {% if detail is empty %}
+
+                    <br/>
+                    <a class="btn btn-primary" href="missions.php?add=1"><i class="fa fa-plus"></i> Ajouter</a>
+
+                    {% if userISteacher %}
+                    <h2 class="reunions-section">Liste des missions que j'encadre</h2>
+                    {% endif %}
+
+                    <div class="liste-reunions">
+                    {% for mission in missions %}
+                      <a href="missions.php?mission={{ mission.url }}">
+                        <div class="panel panel-reunions">
+                          <header class="center">
+                            <h3>{{ mission.objet_mission }}</h3>
+                          </header>
+                          <div class="panel-body center">
+                            <ul>
+                              <li>Début : {{ mission.date_debut }}</li>
+                              <li>Fin : {{ mission.date_fin }}</li>
+                            </ul>
+                            <p>
+                              Description : {{ mission.mission }}
+                            </p>
+                            <h4 style="font-size:90%" class="titre-mission center">Membres d'équipes :</h4>
+                            <hr/>
+                            <br/>
+                            <div class="center">
+                            {% for doctorant in mission.students %}
+                              <span class="btn btn-default" href="doctorants.php?id={{ doctorant.url }}">{{ doctorant.PrenomUtilisateur }} {{ doctorant.NomUtilisateur }}</span>&nbsp;
+                            {% endfor %}
+                            </div>
+                            <br/>
+                          </div>
+                        </div>
+                      </a>
+                    {% endfor %}
+                    </div>
+
+                  {% else %}
+
+                    {% if edit or add %}
+
+                    <div class="panel panel-default">
+                      <header class="center">
+                        <h3>{% if edit %}Modification - {{ detail.objet_mission }}{% elseif add %}Ajout d'une mission{% endif %}</h3>
+                      </header>
+                      <div class="panel-body">
+                        <form action="" method="post">
+                          <input hidden {% if edit %}name="edit_mission"{% elseif add %}name="add_mission"{% endif %} value="{{ detail.id_mission }}"/>
+                          <table class="table table-bordered">
+                            <tr>
+                              <th>Objet de la mission</th>
+                              <td><input type="text" placeholder="objet" name="objet" value="{{ detail.objet_mission }}" required /></td>
+                            </tr>
+                            <tr>
+                              <th>Date de début</th>
+                              <td><input type="text" placeholder="date_debut (YYYY-MM-DD)" name="date_debut" value="{{ detail.date_debut }}" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Date format: YYYY-MM-DD" required /></td>
+                            </tr>
+                            <tr>
+                              <th>Date de fin</th>
+                              <td><input type="text" placeholder="date_fin (YYYY-MM-DD)" name="date_fin" value="{{ detail.date_fin }}" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Date format: YYYY-MM-DD" required /></td>
+                            </tr>
+                            <tr>
+                              <th colspan="2">Description</th>
+                            </tr>
+                            <tr>
+                              <td colspan="2">
+                                <textarea style="width:97.5%;resize:none;" name="description">{{ detail.mission }}</textarea>
+                              </td>
+                            </tr>
+                          </table>
+                          <div class="form_checkbox_multiple">
+                            <h5>Ajouter des doctorants</h5>
+                            <table class="table table-bordered" id="mission_add_doctorants">
+                              <thead>
+                                <tr>
+                                  <th>Ajouter</th>
+                                  <th>Doctorants</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for doctorant in liste_doctorants %}
+                                  <tr>
+                                    <td>
+                                      <input type="checkbox" name="id_doc[]" value="{{ doctorant.NumUtilisateur }}"
+                                      {% for doc in detail.students %}
+                                      {% if doc.NumUtilisateur == doctorant.NumUtilisateur %}
+                                      checked
+                                      {% endif %}
+                                      {% endfor %}
+                                      />
+                                    </td>
+                                    <!-- Gérer l'ajout avec datatable -->
+                                    <td>{{ doctorant.PrenomUtilisateur }} {{ doctorant.NomUtilisateur }}</td>
+                                  </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                            <script type="text/javascript">
+                            $(document).ready( function () {
+                                $('#mission_add_doctorants').DataTable({
+                                  pageLength: 5,
+                                  lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                                  searching: true,
+                                  ordering:  true
+                                });
+                            } );
+                            </script>
+                          </div>
+                          <br/>
+                          <div class="form_checkbox_multiple center">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Enregistrer</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+
+                    {% else %}
+
+                    <div class="panel panel-default">
+                      <header class="center">
+                        <h3>{{ detail.objet_mission }}</h3>
+                      </header>
+                      <div class="panel-body">
+                        <ul>
+                          <li>Début : {{ detail.date_debut }}</li>
+                          <li>Fin : {{ detail.date_fin }}</li>
+                        </ul>
+                        <p>
+                          Description : {{ detail.mission }}
+                        </p>
+                        <span style="font-size:120%" class="titre-mission">Membres d'équipes :</span>
+                        {% for doctorant in detail.students %}
+                          <a class="btn btn-default" href="doctorants.php?id={{ doctorant.url }}">{{ doctorant.PrenomUtilisateur }}&nbsp;{{ doctorant.NomUtilisateur }}</a>&nbsp;
+                        {% endfor %}
+                        <br/>
+                        <br/>
+                        <hr/>
+                        <br/>
+                        <div class="center">
+                          <a class="btn btn-warning" href="missions.php?edit={{ detail.url }}"><i class="fa fa-edit"></i> Modifier</a>
+                        </div>
+                        <br/>
+                        <hr/>
+                        <br/>
+                        <form action="" method="post" class="center p-delete">
+                            <input type="checkbox" required name="delete" value="{{ detail.id_mission }}" />
+                            Confirmer la suppression<br/>
+                            <button value="{{ detail.id_mission }}" class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Supprimer</button>
+                        </form>
+                      </div>
+                    </div>
+
+                    {% endif %}
+
+                  {% endif %}
+                    <!-- fin #zone1 -->
+                </div>
+                <!-- fin #avec_nav_avec_encadres .contenu -->
+
+
+
+                <hr class="separateur_sections_page" />
+
+
+                <div id="encadres">
+
+                    {% include 'includes/$encadres.html' %}
+
+                </div>
+                <!-- #encadres -->
+
+            </div>
+            <!-- #contenu_deco -->
+            <div class="separateur"></div>
+
+        </div>
+        <!-- #page -->
+    </div>
+    <!-- #page_deco -->
+
+    <div class="bordure"></div>
+    <div id="pied_deco">
+
+        {% include 'includes/$pied_deco.html' %}
+
+    </div>
+    <!-- #pied_deco -->
+
+</body>
+
+</html>

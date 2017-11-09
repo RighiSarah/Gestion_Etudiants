@@ -1,0 +1,41 @@
+<div id="bandeau">
+
+
+    <form id="recherche_simple" action="http://dis.univ-lyon2.fr/servlet/com.jsbsoft.jtf.core.SG" method="post">
+        <div>
+            <input type="hidden" name="#ECRAN_LOGIQUE#" value="RECHERCHE"/>
+            <input type="hidden" name="PROC" value="RECHERCHE"/>
+            <input type="hidden" name="ACTION" value="VALIDER"/>
+            <input type="hidden" name="LANGUE" value="0"/>
+            <input type="hidden" name="LANGUE_SEARCH" value="0"/>
+            <input type="hidden" name="CODE_RUBRIQUE" value=""/>
+            <input type="hidden" name="CODE_SITE_DISTANT" value=""/>
+            <input type="hidden" name="SEARCH_SOUSRUBRIQUES" value="true"/>
+            <input type="hidden" name="SEARCH_EXCLUSIONOBJET" value=""/>
+            <input type="hidden" name="RH" value="1358239694591"/>
+            <input type="hidden" name="OBJET" value="TOUS"/>
+
+            <label for="MOTS_CLEFS" accesskey="4">Recherche</label>
+            <input name="QUERY" type="text" id="MOTS_CLEFS" class="champ-saisie" value=""
+                   onblur="if (this.value == '') {this.value = 'Rechercher';}"
+                   onfocus="if (this.value == 'Rechercher') {this.value = '';}"
+                   title="Rechercher par mots-cl&eacute;s"/>
+            <input type="submit" value="ok"/>
+        </div>
+
+        <!-- <p id="vers_recherche_avancee"><a href="http://dis.univ-lyon2.fr/jsp_usinetemplate/recherche_avancee.jsp?RH=1358239694591">Outil de recherche</a></p> -->
+    </form>
+
+    <a href="http://dis.univ-lyon2.fr/fr/" id="retour_accueil" title="Retour &agrave; la page d'accueil"
+       accesskey="1"><img src="http://dis.univ-lyon2.fr/images_modele/usine-logo-2014.png"
+                          alt="Département Informatique et Statistique" title="Retour &agrave; la page d'accueil"/></a>
+
+    <span class="portails">
+			    Portails : <a href="http://www.univ-lyon2.fr/">www</a> - <a href="http://etu.univ-lyon2.fr">&eacute;tudiants</a> - <a
+            href="http://intranet.univ-lyon2.fr">personnels</a>
+			</span><!-- #portails -->
+
+    <span class="bandeau_titre">
+			    Formations DIS<br/><i class="fa fa-graduation-cap"></i> Gestion des &Eacute;tudiants
+			</span><!-- #bandeau_titre -->
+</div> <!-- #bandeau -->

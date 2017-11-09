@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    {% include 'includes/$head.html' %}
+    
+</head>
+
+<body class="pageaccueil accueil">
+
+    <div class="bordure"></div>
+
+
+    <div id="bandeau_deco">
+
+        {% include 'includes/$bandeau_deco.html' %}
+
+    </div>
+    <!-- #bandeau_deco -->
+
+    <div id="page_deco">
+
+        <div id="page">
+
+
+            <hr class="separateur_sections_page" />
+            <div id="contenu_deco">
+
+                <div id="bandeau_illustration"></div>
+
+                {% include 'includes/$header_nav.html' %}
+
+                {% include 'includes/$menu.html' %}
+
+                <div id="avec_nav_avec_encadres" class="contenu">
+
+                  <ul class="breadcrumb">
+                    <li><a href="index.php">Accueil</a></li>
+                    <li>&gt;</li>
+                    <li><a href="reunions.php">Reunions</a></li>
+                    {% if info_reunion is not empty %}
+                    <li>&gt;</li>
+                    <li><a href="reunions.php?reunion={{ info_reunion.url_edit }}">{{ info_reunion.date_reunion }} {{ info_reunion.heure_debut }} - {{ info_reunion.mission }}</a></li>
+                    {% endif %}
+                    {% if edit_reunion is not empty %}
+                    <li>&gt;</li>
+                    <li><a href="reunions.php?reunion={{ edit_reunion.url_edit }}">{{ edit_reunion.date_reunion }} {{ edit_reunion.heure_debut }} - {{ edit_reunion.mission }}</a></li>
+                    <li>&gt;</li>
+                    <li><a href="#">Modification</a></li>
+                    {% endif %}
+                    {% if form_add==1 %}
+                    <li>&gt;</li>
+                    <li><a href="reunions.php?add=1">Choix d'une mission</a></li>
+                    {% endif %}
+                    {% if form_add==2 %}
+                    <li>&gt;</li>
+                    <li><a href="reunions.php?add=1">Choix d'une mission</a></li>
+                    <li>&gt;</li>
+                    <li><a href="#">Ajout</a></li>
+                    {% endif %}
+                  </ul>
+
+                    {% if message_form is not empty %}
+                    <p>{{ message_form }}</p>
+                    {% endif %}
+
+                    {% if (form_add > 0) %}
+
+                    {# premier formulaire d'ajout : choix de la mission #}
+                    {% if form_add == 1 %}
+                    <div class="panel panel-default">
+                      <header class="center">
+                        <h3>Choix d'une mission</h3>
+                      </header>
+                      <div class="panel-body">
+                        <form action="" method="post">
+                          {% if list_missions is not empty %}
+                          <select name="add_reunion_choice_mission">
+                            {% for mission in list_missions %}
+                            <option value="{{ mission.id_mission }}">{{ mission.mission }}</option>
+                            {% endfor %}
+                          </select>
+                          <button class="btn btn-primary" type="submit"><i class="fa fa-arrow-right"></i> Continuer</button>
+                          {% else %}
+                          <p>Impossible d'ajouter une réunion, vous n'avez aucune mission en cours</p>
+                          {% endif %}
+                        </form>
+                      </div>
+                    </div>
+
+                    {# deuxièeme formulaire d'ajout : informations de la réunions #}
+                    {% elseif form_add == 2 %}
+
+
+                    <div class="panel panel-default">
+                      <header class="center">
+                        <h3>Ajouter une réunion pour la mission n°{{ add_reunion_choice_mission }}</h3>
+                      </header>
+                      <div class="panel-body">
+                        <form action="" method="post">
+                          <input hidden name="id_mission" value="{{ add_reunion_choice_mission }}"/>
+                          <input hidden name="add_reunion" value=""/>
+                          <table class="table table-bordered">
+                            <tr>
+                              <th colspan="3">Objet de la réunion</th>
+                            </tr>
+                            <tr>
+                              <td colspan="3"><input style="width:97.5%;" type="text" name="titre"/></td>
+                            </tr>
+                            <tr>
+                              <th>Date</th>
+                              <th>Début</th>
+                              <th>Fin</th>
+                            </tr>
+                            <tr>
+                              <td><input style="width:95.5%;" type="text" placeholder="YYYY-MM-DD" name="date_reunion" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/></td>
+                              <td>
+                                <select style="width:97.5%;" name="heure_debut">
+                                {% for i in 7..20 %}
+                                  <option {% if edit_reunion.heure_debut == (i ~ "h00") %}selected{% endif %} value="{{ i }}h00">{{ i }}h00</option>
+                                  <option {% if edit_reunion.heure_debut == (i ~ "h15") %}selected{% endif %} value="{{ i }}h15">{{ i }}h15</option>
+                                  <option {% if edit_reunion.heure_debut == (i ~ "h30") %}selected{% endif %} value="{{ i }}h30">{{ i }}h30</option>
+                                  <option {% if edit_reunion.heure_debut == (i ~ "h45") %}selected{% endif %} value="{{ i }}h45">{{ i }}h45</option>
+                                {% endfor %}
+                                </select>
+                              </td>
+                              <td>
+                                <select style="width:97.5%;" name="heure_fin">
+                                  {% for i in 7..20 %}
+                                    <option {% if edit_reunion.heure_fin == (i ~ "h00") %}selected{% endif %} value="{{ i }}h00">{{ i }}h00</option>
+                                    <option {% if edit_reunion.heure_fin == (i ~ "h15") %}selected{% endif %} value="{{ i }}h15">{{ i }}h15</option>
+                                    <option {% if edit_reunion.heure_fin == (i ~ "h30") %}selected{% endif %} value="{{ i }}h30">{{ i }}h30</option>
+                                    <option {% if edit_reunion.heure_fin == (i ~ "h45") %}selected{% endif %} value="{{ i }}h45">{{ i }}h45</option>
+                                  {% endfor %}
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th colspan="3">Description</th>
+                            </tr>
+                            <tr>
+                              <td colspan="3">
+                                <input style="width:97.5%;" type="text" name="description" placeholder="description"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th colspan="3">Doctorants</th>
+                            </tr>
+                            {% for d in liste_doctorants_mission %}
+                            <tr>
+                              <td colspan="3"><input type="checkbox" name="id_doc[]"/> {{ d.PrenomUtilisateur }} {{ d.NomUtilisateur }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                              <td colspan="3">Aucun participants</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                              <td colspan="3" class="center">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i> Ajouter</button>
+                              </td>
+                            </tr>
+                          </table>
+                        </form>
+                      </div>
+                    </div>
+
+
+
+                    <!--<form action="" method="post">
+                      <input hidden name="id_mission" value="{{ add_reunion_choice_mission }}"/>
+                      <table>
+                        <thead>
+                            <tr>
+                              <td>Date</td>
+                              <td>Début</td>
+                              <td>Fin</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <input hidden name="add_reunion" value=""/>
+                                <input type="text" name="date_reunion" value="" placeholder="date : yyyy-mm-dd" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>
+                              </td>
+                              <td>
+                                <select name="heure_debut">
+                                  {% for i in 7..20 %}
+                                    <option value="{{ i }}h00">{{ i }}h00</option>
+                                    <option value="{{ i }}h15">{{ i }}h15</option>
+                                    <option value="{{ i }}h30">{{ i }}h30</option>
+                                    <option value="{{ i }}h45">{{ i }}h45</option>
+                                  {% endfor %}
+                                </select>
+                              </td>
+                              <td>
+                                <select name="heure_fin">
+                                  {% for i in 7..20 %}
+                                    <option value="{{ i }}h00">{{ i }}h00</option>
+                                    <option value="{{ i }}h15">{{ i }}h15</option>
+                                    <option value="{{ i }}h30">{{ i }}h30</option>
+                                    <option value="{{ i }}h45">{{ i }}h45</option>
+                                  {% endfor %}
+                                </select>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <input type="text" name="titre" value="" placeholder="titre"/>
+                        </br>
+                        <input type="text" name="description" value="" placeholder="description"/>
+                        </br>
+
+
+                        <p>Etudiants participant</p>
+
+                        <table>
+                          {% for d in liste_doctorants_mission %}
+                          <tr>
+                            <td><input type="checkbox" name="id_doc[]" value="{{ d.NumUtilisateur }}"/></td>
+                            <td>{{ d.PrenomUtilisateur }} {{ d.NomUtilisateur }}</td>
+                          </tr>
+                          {% endfor %}
+                        </table>
+
+                        <button type="submit">OK</button>
+                      </form>-->
+
+                    {% endif %}
+
+                    {# Partie qui liste les réunions #}
+
+                    {% elseif info_reunion is empty and edit_reunion is empty %}
+
+                    <br/>
+                    <a class="btn btn-primary" href="reunions.php?add=1"><i class="fa fa-plus"></i> Ajouter</a>
+
+                    <h2 class="reunions-section">Mes prochaines réunions</h2>
+                    <div class="liste-reunions">
+                      {% for reunion in reunions if reunion.date_reunion >= "now"|date("Y-m-d") %}
+                      <a href="reunions.php?reunion={{ reunion.url }}">
+                        <div class="panel panel-reunions">
+              						<header class="center">
+              							<h3>{{ reunion.objet_reunion }}</h3>
+              						</header>
+              						<div class="panel-body">
+                            <table class="table">
+                              <tr>
+                                <td colspan="2">{{ reunion.objet_mission }} - {{ reunion.mission }}</td>
+                              <tr>
+                                <td>{{ reunion.date_reunion }} {{ reunion.heure_debut }}</td>
+                                <td rowspan="2">{{ reunion.reunion }}</td>
+                              </tr>
+                              <tr>
+                                <td>{{ reunion.date_reunion }} {{ reunion.heure_fin }}</td>
+                              </tr>
+                            </table>
+              						</div>
+              					</div>
+                      </a>
+                      {% else %}
+                      <p>Aucune réunions pour le moment.</p>
+                      {% endfor %}
+                    </div>
+                    {#
+                    <h2 class="reunions-section">Anciennes réunions</h2>
+                    <div class="liste-reunions">
+                      {% for reunion in reunions if reunion.date_reunion < "now"|date("Y-m-d") %}
+                      <a href="reunions.php?reunion={{ reunion.url }}">
+                        <div class="panel panel-reunions">
+                          <header class="center">
+                            <h3>{{ reunion.objet_reunion }}</h3>
+                          </header>
+                          <div class="panel-body">
+                            <table class="table">
+                              <tr>
+                                <td colspan="2">{{ reunion.objet_mission }} - {{ reunion.mission }}</td>
+                              <tr>
+                                <td>{{ reunion.date_reunion }} {{ reunion.heure_debut }}</td>
+                                <td rowspan="2">{{ reunion.reunion }}</td>
+                              </tr>
+                              <tr>
+                                <td>{{ reunion.date_reunion }} {{ reunion.heure_fin }}</td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                      </a>
+                      {% else %}
+                      <p>Aucune réunions effectuées</p>
+                      {% endfor %}
+                    </div>
+                    #}
+                    {% elseif info_reunion is not empty %}
+
+                    {# Partie qui affiche le détail d'une réunion #}
+
+                    <div class="panel panel-default">
+                      <header class="center">
+                        <h3>Réunion n°{{ info_reunion.id_reunion }} - {{ info_reunion.mission}}</h3>
+                      </header>
+                      <div class="panel-body">
+                        <table class="table table-bordered">
+                          <tr>
+                            <th colspan="2">Objet de la réunion et mission concernée</th>
+                          </tr>
+                          <tr>
+                            <td colspan="2">{{ info_reunion.objet_mission }} - {{ info_reunion.mission}}</td>
+                          </tr>
+                          <tr>
+                            <th>Heure début/fin</th>
+                            <th>Description</th>
+                          </tr>
+                          <tr>
+                            <td>{{ info_reunion.date_reunion }} {{ info_reunion.heure_debut }}</td>
+                            <td rowspan="2">{{ info_reunion.reunion }}</td>
+                          </tr>
+                          <tr>
+                            <td>{{ info_reunion.date_reunion }} {{ info_reunion.heure_fin }}</td>
+                          </tr>
+                          <tr>
+                            <th colspan="2">Enseignant</th>
+                          </tr>
+                          <tr>
+                            <td colspan="2">{{ info_reunion.teacher.PrenomUtilisateur }} {{ info_reunion.teacher.NomUtilisateur }}</td>
+                          </tr>
+                          <tr>
+                            <th colspan="2">Doctorants</th>
+                          </tr>
+                          {% if info_reunion.students_reunion.0 is not empty %}
+                          {% for student in info_reunion.students_reunion %}
+                          <tr>
+                            <td colspan="2">{{ student.PrenomUtilisateur }} {{ student.NomUtilisateur }}</td>
+                          </tr>
+                          {% endfor %}
+                          {% else %}
+                          <tr>
+                            <td colspan="2">Aucun participants</td>
+                          </tr>
+                          {% endif %}
+                        </table>
+                        <a class="btn btn-warning" href="reunions.php?edit={{ info_reunion.url_edit }}"><i class="fa fa-edit"></i> Modifier</a>
+                        <br/>
+                        <br/>
+                        <hr/>
+                        <form class="center" action="" method="post">
+                          <button name="delete_id" value="{{ info_reunion.id_reunion }}" type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Supprimer</button>
+                        </form>
+                      </div>
+                    </div>
+
+
+                    {% elseif edit_reunion is not empty %}
+
+                    {# Partie qui permet l'édition d'une réunion #}
+
+                      <div class="panel panel-default">
+                        <header class="center">
+                          <h3>Modification - Réunion n°{{ edit_reunion.id_reunion }} - {{ edit_reunion.mission}}</h3>
+                        </header>
+                        <div class="panel-body">
+                          <form action="" method="post">
+                          <input hidden name="edit_reunion" value="{{ edit_reunion.id_reunion }}"/>
+                          <table class="table table-bordered">
+                            <tr>
+                              <th colspan="3">Objet de la réunion</th>
+                            </tr>
+                            <tr>
+                              <td colspan="3"><input style="width:97.5%;" type="text" name="titre" value="{{ edit_reunion.objet_reunion }}"/></td>
+                            </tr>
+                            <tr>
+                              <th>Date</th>
+                              <th>Début</th>
+                              <th>Fin</th>
+                            </tr>
+                            <tr>
+                              <td><input style="width:95.5%;" type="text" name="date_reunion" value="{{ edit_reunion.date_reunion }}"/></td>
+                              <td>
+                                <select style="width:97.5%;" name="heure_debut">
+                                {% for i in 7..20 %}
+                                  <option {% if edit_reunion.heure_debut == (i ~ "h00") %}selected{% endif %} value="{{ i }}h00">{{ i }}h00</option>
+                                  <option {% if edit_reunion.heure_debut == (i ~ "h15") %}selected{% endif %} value="{{ i }}h15">{{ i }}h15</option>
+                                  <option {% if edit_reunion.heure_debut == (i ~ "h30") %}selected{% endif %} value="{{ i }}h30">{{ i }}h30</option>
+                                  <option {% if edit_reunion.heure_debut == (i ~ "h45") %}selected{% endif %} value="{{ i }}h45">{{ i }}h45</option>
+                                {% endfor %}
+                                </select>
+                              </td>
+                              <td>
+                                <select style="width:97.5%;" name="heure_fin">
+                                  {% for i in 7..20 %}
+                                    <option {% if edit_reunion.heure_fin == (i ~ "h00") %}selected{% endif %} value="{{ i }}h00">{{ i }}h00</option>
+                                    <option {% if edit_reunion.heure_fin == (i ~ "h15") %}selected{% endif %} value="{{ i }}h15">{{ i }}h15</option>
+                                    <option {% if edit_reunion.heure_fin == (i ~ "h30") %}selected{% endif %} value="{{ i }}h30">{{ i }}h30</option>
+                                    <option {% if edit_reunion.heure_fin == (i ~ "h45") %}selected{% endif %} value="{{ i }}h45">{{ i }}h45</option>
+                                  {% endfor %}
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th colspan="3">Description</th>
+                            </tr>
+                            <tr>
+                              <td colspan="3">
+                                <input style="width:97.5%;" type="text" name="description" placeholder="description" value="{{ edit_reunion.reunion }}"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th colspan="3">Doctorants</th>
+                            </tr>
+                            {% for d in edit_reunion.students %}
+                            <tr>
+                              <td colspan="3"><input type="checkbox" name="id_doc[]" value="{{ d.NumUtilisateur }}"/> {{ d.PrenomUtilisateur }} {{ d.NomUtilisateur }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                              <td colspan="3">Aucun participants</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                              <td colspan="3" class="center">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Enregistrer</button>
+                              </td>
+                            </tr>
+                          </table>
+                          </form>
+                        </div>
+                      </div>
+
+
+
+                    {% endif %}
+                    <!-- fin #zone1 -->
+                </div>
+                <!-- fin #avec_nav_avec_encadres .contenu -->
+
+
+
+                <hr class="separateur_sections_page" />
+
+
+                <div id="encadres">
+
+                    {% include 'includes/$encadres.html' %}
+
+                </div>
+                <!-- #encadres -->
+
+            </div>
+            <!-- #contenu_deco -->
+            <div class="separateur"></div>
+
+        </div>
+        <!-- #page -->
+    </div>
+    <!-- #page_deco -->
+
+    <div class="bordure"></div>
+    <div id="pied_deco">
+
+        {% include 'includes/$pied_deco.html' %}
+
+    </div>
+    <!-- #pied_deco -->
+
+</body>
+
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    {% include 'includes/$head.html' %}
+
+</head>
+
+<body class="pageaccueil accueil">
+
+    <div class="bordure"></div>
+
+
+    <div id="bandeau_deco">
+
+        {% include 'includes/$bandeau_deco.html' %}
+
+    </div>
+    <!-- #bandeau_deco -->
+
+    <div id="page_deco">
+
+        <div id="page">
+
+            <hr class="separateur_sections_page" />
+            <div id="contenu_deco">
+
+                <div id="bandeau_illustration"></div>
+
+                {% include 'includes/$header_nav.html' %}
+
+                {% include 'includes/$menu.html' %}
+
+                <div id="avec_nav_avec_encadres" class="contenu">
+
+                    <ul class="breadcrumb">
+                      <li><a href="index.php">Accueil</a></li>
+                      <li>&gt;</li>
+                      <li><a href="doctorants.php">Doctorants</a></li>
+                      {% if info_doctorant is not empty %}
+                      <li>&gt;</li>
+                      <li><a href="doctorants.php?id={{ info_doctorant.url }}">{{ info_doctorant.PrenomUtilisateur }} {{ info_doctorant.NomUtilisateur }}</a></li>
+                      {% endif %}
+                      {% if info_doctorant is not empty and display_form_update %}
+                      <li>&gt;</li>
+                      <li><a href="#">Modification</a></li>
+                      {% endif %}
+                    </ul>
+
+
+                    {# si aucun doctorant n'a été séléctionné #}
+                    {% if info_doctorant is empty %}
+
+                      {# formulaire de séléction d'un doctorant #}
+
+                      <div class="panel panel-default center">
+                            <header>
+                              <h3>Séléction d'un doctorant</h3>
+                            </header>
+                              <div class="panel-body">
+                              <form action="" method="post">
+                                    {% if role == 2 %}
+                                      <a class="btn btn-default" href="?filter=all">Tous</a>
+                                      <a class="btn btn-default" href="?filter=missions">Doctorants d'une mission</a>
+                                      <hr/>
+                                    {% endif %}
+                                    {% if liste_doctorants.0 is not empty %}
+                                      <select id="list_doctorant" name="id_doctorant">
+                                          {% for doctorant in liste_doctorants %}
+                                          <option value="{{ doctorant.NumUtilisateur }}" {% if info_doctorant.NumUtilisateur==doctorant.NumUtilisateur %}selected{% endif %}>{{ doctorant.PrenomUtilisateur }} {{ doctorant.NomUtilisateur }} {% if doctorant.mission is defined %} - {{ doctorant.mission }} {% endif %}</option>
+                                          {% endfor %}
+                                      </select>
+                                      <script type="text/javascript">
+                                          $('#list_doctorant').select2();
+                                      </script>
+                                    {% else %}
+                                    <p>Aucun doctorants pour ce filtre</p>
+                                    {% endif %}
+                                  <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i> Valider</button>
+                              </form>
+                          </div>
+                      </div>
+
+                      {# fin formulaire de séléction d'un doctorant #}
+
+                    {# si un doctorant a été choisi #}
+                    {% else %}
+
+
+                    <div class="panel panel-default center">
+
+                        {# formualaire de modification #}
+                        {% if display_form_update %}
+
+                        <header>
+                          <h3>Modification : {{ info_doctorant.PrenomUtilisateur }} {{ info_doctorant.NomUtilisateur }}</h3>
+                        </header>
+                        <div class="panel-body">
+                          <form action="" method="post" enctype="multipart/form-data">
+                            <input hidden name="update_NumUtilisateur" value="{{ info_doctorant.NumUtilisateur }}"/>
+                            <table class="table" style="text-align:left;">
+                              <tr>
+                                <td class="center">
+                                  <img style="border-radius:360px;" width="100" height="100" src="{{ info_doctorant.photoUtilisateur }}"/>
+                                </td>
+                                <td colspan="2">
+                                  <input style="width:96.5%;" type="file" name="photo"/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="text-align:right;">
+                                  <i class="fa fa-info"></i> Nom Prénom
+                                </td>
+                                <td>
+                                  <input style="width:92.5%;" name="PrenomUtilisateur" type="text" value="{{ info_doctorant.PrenomUtilisateur }}" placeholder="Prénom"/>
+                                </td>
+                                <td>
+                                  <input style="width:92.5%;" type="text" name="NomUtilisateur" value="{{ info_doctorant.NomUtilisateur }}" placeholder="Nom"/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="text-align:right;">
+                                  <i class="fa fa-envelope"></i> Email
+                                </td>
+                                <td colspan="2">
+                                  <input style="width:96.5%;" type="text" name="EmailUtilisateur" value="{{ info_doctorant.EmailUtilisateur }}" placeholder="Email"/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="text-align:right;">
+                                  <i class="fa fa-birthday-cake"></i> Née le
+                                </td>
+                                <td colspan="2">
+                                  <input style="width:96.5%;" type="text" name="DateNaissanceUtilisateur" value="{{ info_doctorant.DateNaissanceUtilisateur }}"  placeholder="Date de naissance"/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td rowspan="3" style="text-align:right;">
+                                  <i class="fa fa-street-view"></i> Adresse
+                                </td>
+                                <td colspan="2">
+                                  <input style="width:96.5%;" type="text" name="AdrRueUtilisateur" value="{{ info_doctorant.AdrRueUtilisateur }}" placeholder="Adresse"/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <input style="width:92.5%;" type="text" name="AdrCPUtilisateur" value="{{ info_doctorant.AdrCPUtilisateur }}" placeholder="Code postal"/>
+                                </td>
+                                <td>
+                                  <input style="width:92.5%;" type="text" name="AdrVilleUtilisateur" value="{{info_doctorant.AdrVilleUtilisateur }}" placeholder="Ville"/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="2">
+                                  <input style="width:96.5%;" type="text" name="AdrPaysUtilisateur" value="{{ info_doctorant.AdrPaysUtilisateur }}" placeholder="Pays"/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="text-align:right;">
+                                  <i class="fa fa-flag"></i> Nationalité
+                                </td>
+                                <td colspan="2">
+                                  <input style="width:96.5%;" type="text" name="nationaliteUtilisateur" value="{{ info_doctorant.nationaliteUtilisateur }}" placeholder="Nationalité"/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="3" class="center">
+                                  <br/>
+                                  <button class="btn btn-warning" type="submit"><i class="fa fa-refresh"></i> Mettre à jour</button>
+                                </td>
+                              </tr>
+                            </table>
+                          </form>
+                        </div>
+
+                        {# affichage des information d'un doctorant #}
+                        {% else %}
+
+                        <header>
+                          <h3>{{ info_doctorant.PrenomUtilisateur }} {{ info_doctorant.NomUtilisateur }}</h3>
+                        </header>
+                        <div class="panel-body" id="user_info">
+
+                          <img src="{{ info_doctorant.photoUtilisateur }}"/>
+                          <p>
+                              <i class="fa fa-envelope"></i> <a href="mailto:{{ info_doctorant.EmailUtilisateur }}">{{ info_doctorant.EmailUtilisateur }}</a>
+                              <br/>
+                              <i class="fa fa-birthday-cake"></i> né{% if info_doctorant.sexeUtilisateur=='F' %}e{% endif %} le {{ info_doctorant.DateNaissanceUtilisateurFormat }}
+                              <br/>
+                              <i class="fa fa-street-view"></i> {{ info_doctorant.AdrRueUtilisateur }},<br/>{{ info_doctorant.AdrCPUtilisateur }} {{info_doctorant.AdrVilleUtilisateur }},<br/>{{ info_doctorant.AdrPaysUtilisateur }}
+                              <br/>
+                              <i class="fa fa-flag"></i> {{ info_doctorant.nationaliteUtilisateur }}
+                          </p>
+                          {% if rw and role <= 2 %}
+                          <form action="" method="post">
+                              <input hidden name="update_NumUtilisateur" value="{{ info_doctorant.NumUtilisateur }}" />
+                              <button class="btn btn-warning" type="submit"><i class="fa fa-edit"></i> Modifier</button>
+                          </form>
+                          {% endif %}
+
+                          {% if info_doctorant.cursus is not empty %}
+                          <p>
+                            {{ info_doctorant.cursus.anneeInscrire }} - {{ info_doctorant.cursus.LibelleFormation }}
+                          </p>
+                          {% endif %}
+
+                          {% if info_doctorant.missions.0 is not empty %}
+                          <p>
+                                {% for mission in info_doctorant.missions %}
+                                {{ mission.objet_mission }} : {{ mission.mission }}<br/>
+                                {% endfor %}
+                          </p>
+                          {% endif %}
+
+                          {% if rw and role <= 2 %}
+                          <br/>
+                          <hr/>
+                          <br/>
+                          <form action="" method="post" class="p-delete">
+                              <input type="checkbox" required name="delete_NumUtilisateur" value="{{ info_doctorant.NumUtilisateur }}" />
+                              Confirmer la suppression<br/>
+                              <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Supprimer</button>
+                          </form>
+                          {% endif %}
+
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+                <!-- fin #avec_nav_avec_encadres .contenu -->
+
+
+
+                <hr class="separateur_sections_page" />
+
+
+                <div id="encadres">
+
+                    {% include 'includes/$encadres.html' %}
+
+                </div>
+                <!-- #encadres -->
+
+            </div>
+            <!-- #contenu_deco -->
+            <div class="separateur"></div>
+
+        </div>
+        <!-- #page -->
+    </div>
+    <!-- #page_deco -->
+
+    <div class="bordure"></div>
+    <div id="pied_deco">
+
+        {% include 'includes/$pied_deco.html' %}
+
+    </div>
+    <!-- #pied_deco -->
+
+</body>
+
+</html>

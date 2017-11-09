@@ -1,0 +1,11 @@
+{% if logged %}
+<div class="header_nav">
+  <table>
+    <tr>
+      <td id="hn-img"><img src="{{ user.photoUtilisateur }}"/></td>
+      <td id="hn-info">{{ user.PrenomUtilisateur ~ ' ' ~ user.NomUtilisateur }}</td>
+      <td id="hn-logout"><a href="settings.php" class="btn btn-default"><i class="fa fa-wrench"></i>&nbsp;Paramètres</a>&nbsp;<a class="btn btn-danger" href="logout.php"><i class="fa fa-sign-out"></i> Déconnexion</a></td>
+    </tr>
+  </table>
+</div>
+{% endif %}

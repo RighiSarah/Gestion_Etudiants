@@ -1,0 +1,296 @@
+div.visionneuse_contenu h3 {
+display:none;
+}
+
+div.visionneuse_contenu {
+position:relative;
+}
+
+div.galerie_player {
+background-color:#000;
+margin:auto;
+}
+
+div.galerie_playlist {
+margin-top:5px;
+}
+
+p.galerie_titre {
+font-size:1.3333em;
+font-weight:700;
+}
+
+/******************************************
+                ONGLETS                  
+******************************************/
+div.galerie_onglet h3 {
+display:none;
+}
+
+div.galerie_onglet ul.galerie_onglets {
+background:#fff;
+border-bottom:2px solid #999;
+font-weight:700;
+list-style:none;
+margin:0.5em 0 1em;
+padding:0 0 0.2em;
+}
+
+div.galerie_onglet ul.galerie_onglets li {
+-moz-border-radius-topleft:4px;
+-moz-border-radius-topright:4px;
+-webkit-border-top-left-radius:4px;
+-webkit-border-top-right-radius:4px;
+background:#eee;
+border:2px solid;
+border-bottom:0;
+color:#999;
+cursor:pointer;
+display:inline;
+margin:0 1em 0 0;
+padding:0.2em 0.5em;
+}
+
+div.galerie_onglet ul.galerie_onglets li.bouton_focus,
+div.galerie_onglet ul.galerie_onglets li.bouton_focus:hover,
+div.galerie_onglet ul.galerie_onglets li:hover {
+background:#fff;
+border-color:#999;
+color:#000;
+padding-bottom:4px;
+}
+
+/******************************************
+                Liste simple             
+******************************************/
+div.galerie_playlist ul.visionneuse_pagination {
+list-style:none;
+margin:0 0 1em;
+padding:0;
+}
+
+div.galerie_playlist ul.visionneuse_pagination li {
+border-bottom:1px dotted #ccc;
+margin:0 0 0.7em;
+padding:0 0 0.7em;
+}
+
+.lanceur_media {
+cursor:pointer;
+}
+
+/******************************************
+               DEFAUT                   
+******************************************/
+div.galerie_playlist p.visionneuse_defaut_titre {
+border:solid 2px #828282;
+margin:0;
+padding:3px;
+}
+
+div.galerie_playlist ul.visionneuse_defaut {
+margin:0;
+padding:0;
+}
+
+/* === */
+div.galerie_playlist ul.visionneuse_defaut li {
+background:#eee;
+list-style:none;
+margin:0 0 5px;
+padding:5px;
+}
+
+/******************************************
+              PAGINATION                 
+******************************************/
+table.visionneuse_pagination {
+left:0;
+margin:auto;
+top:0;
+}
+
+table.visionneuse_pagination td table.pagination_contenu tbody td {
+background:#828282;
+border:10px solid #fff;
+color:#fff;
+height:150px;
+margin:15px;
+text-align:center;
+vertical-align:top;
+width:150px;
+}
+
+table.visionneuse_pagination td table.pagination_contenu tbody td:hover {
+background:#999;
+}
+
+table.visionneuse_pagination thead td,
+table.visionneuse_pagination tfoot td {
+text-align:center;
+width:100%;
+}
+
+table.visionneuse_pagination td.pagination_suivant,
+table.visionneuse_pagination td.pagination_precedent,
+table.visionneuse_pagination td.pagination_aucune {
+border:0;
+vertical-align:middle;
+width:25px;
+}
+
+table.visionneuse_pagination td table.pagination_contenu tbody tr td.pagination_vide {
+background:#ddd;
+}
+
+table.visionneuse_pagination td.pagination_suivant a,
+table.visionneuse_pagination td.pagination_precedent a {
+background-color:transparent;
+cursor:pointer;
+}
+
+table.visionneuse_pagination td.pagination_suivant a:hover,
+table.visionneuse_pagination td.pagination_precedent a:hover,
+table.visionneuse_pagination td.pagination_aucune a:hover {
+background:transparent;
+}
+
+/******************************************
+     Visionneuse PLAYLIST MODE TELE      
+******************************************/
+div.visionneuse_tele_player {
+text-align:center;
+}
+
+div.visionneuse_tele_player div {
+margin:auto;
+}
+
+/******************************************
+                STYLE_1                  
+******************************************/
+div.style1_media {
+margin:1em;
+text-align:left;
+}
+
+div.style1_media a.lanceur_media {
+background:#000;
+color:#fff;
+display:block;
+text-decoration:none;
+}
+
+span.style1_media_vignette {
+display:block;
+overflow:hidden;
+text-align:center;
+}
+
+span.style1_media_vignette img {
+vertical-align:middle;
+}
+
+ul.visionneuse_defaut div.style1_media {
+margin:0;
+}
+
+ul.visionneuse_defaut li,
+ul.visionneuse_defaut span.style1_media_contenu {
+overflow:auto;
+}
+
+ul.visionneuse_defaut div.style1_media a.lanceur_media {
+float:left;
+margin:0 10px 0 0;
+width:150px;
+}
+
+.mediaStyleSimple img{
+background-color:black;
+vertical-align: middle;
+}
+
+/******************************************
+              PLAYER PHOTO               
+******************************************/
+p.player_photo {
+background-color:#000;
+}
+
+p.player_photo img {
+margin:auto;
+}
+
+/******************************************
+               PLAYER AUDIO              
+******************************************/
+div.player_audio {
+display:block;
+text-align:center;
+}
+
+div.player_audio * {
+vertical-align:middle;
+}
+
+/******************************************
+               PLAYER SWF               
+******************************************/
+div.player_flash {
+background-color:#000;
+}
+
+div.contenu .showcase {
+height:170px;
+margin:20px auto 0;
+position:relative;
+width:500px;
+}
+
+div.contenu .showcase a.controls {
+border:2px solid #FFF;
+font-weight:700;
+height:50px;
+line-height:50px;
+margin-top:-27px;
+position:absolute;
+text-align:center;
+top:50%;
+width:20px;
+}
+
+div.contenu .showcase a.controls img {
+vertical-align:middle;
+}
+
+div.contenu .showcase a.previous {
+padding-bottom:4px;
+}
+
+div.contenu .showcase ul li {
+float:left;
+height:170px;
+list-style-type:none;
+width:50px;
+}
+
+div.contenu .showcase li a img {
+border:0;
+}
+
+div.contenu .showcase a.next {
+padding-top:4px;
+right:0;
+}
+
+div.contenu .showcase a.controls:hover {
+border-color:#2097FA;
+}
+
+div.contenu .showcase ul {
+height:170px;
+margin:0 auto;
+position:relative;
+width:290px;
+}

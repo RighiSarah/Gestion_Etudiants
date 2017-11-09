@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    {% include 'includes/$head.html' %}
+
+</head>
+
+<body class="pageaccueil accueil">
+
+    <div class="bordure"></div>
+
+
+    <div id="bandeau_deco">
+
+        {% include 'includes/$bandeau_deco.html' %}
+
+    </div>
+    <!-- #bandeau_deco -->
+
+    <div id="page_deco">
+
+        <div id="page">
+
+
+            <div id="navigation">
+
+            </div>
+
+            <hr class="separateur_sections_page" />
+            <div id="contenu_deco">
+
+                <div id="bandeau_illustration"></div>
+
+                {% include 'includes/$header_nav.html' %}
+
+                {% include 'includes/$menu.html' %}
+
+                <div id="avec_nav_avec_encadres" class="contenu">
+
+                  <ul class="breadcrumb">
+                    <li><a href="index.php">Accueil</a></li>
+                    <li>&gt;</li>
+                    <li><a href="documents.php">Documents</a></li>
+                    {% if detail is not empty %}
+                    <li>&gt;</li>
+                    <li><a href="documents.php?doc={{ detail.url }}">{{ detail.titre_doc }}</a></li>
+                    {% endif %}
+                    {% if edit %}
+                    <li>&gt;</li>
+                    <li><a href="documents.php?edit={{ detail.url }}">Modification</a></li>
+                    {% endif %}
+                    {% if add %}
+                    <li><a href="documents.php?add=1">Ajout</a></li>
+                    {% endif %}
+                  </ul>
+
+                  {% if detail is empty %}
+
+                    <br/>
+                    <a class="btn btn-primary" href="documents.php?add=1"><i class="fa fa-plus"></i> Ajouter</a>
+                    <br/>
+
+                    <br/>
+                          <div class="panel panel-transparent">
+                            <table style="width:99%" class="table table-bordered" id="liste_docs">
+                              <thead style="font-size:100%">
+                                <tr>
+                                  <th>Titre</th>
+                                  <th>Publication</th>
+                                  <th>Mission</th>
+                                  <th>Doctorant</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              {% for doc in documents %}
+                                <tr>
+                                  <td><a href="documents.php?doc={{ doc.url }}">{{ doc.titre_doc }}</a></td>
+                                  <td>{{ doc.date_publi_doc }}</td>
+                                  <td><a href="missions.php?mission={{ doc.url_mission }}">{{ doc.mission.objet_mission }}</a></td>
+                                  <td><a href="doctorants.php?id={{ doc.url_doctorant }}">{{ doc.doctorant.PrenomUtilisateur ~ ' ' ~ doc.doctorant.NomUtilisateur }}</a></td>
+                                </tr>
+                              {% else %}
+                              <tr>
+                                <td colspan="5">Aucun documents</td>
+                              </tr>
+                              {% endfor %}
+                              </tbody>
+                            </table>
+                            <script type="text/javascript">
+                            $(document).ready( function () {
+                                $('#liste_docs').DataTable({
+                                  pageLength: 25,
+                                  lengthMenu: [[25, 100, -1], [25, 100, "All"]],
+                                  searching: true,
+                                  ordering:  true
+                                });
+                            } );
+                            </script>
+                          </div>
+
+                  {% else %}
+
+                    {% if edit or add %}
+
+                    <div class="panel panel-default">
+                      <header class="center">
+                        {% if edit %}
+                        <h3>Modification - {{ detail.titre_doc }}</h3>
+                        {% else %}
+                        <h3>Ajout</h3>
+                        {% endif %}
+                      </header>
+                      <div class="panel-body center">
+                        <form action="" method="post" enctype="multipart/form-data">
+
+                          {% if edit %}
+                          <input hidden name="edit" value="{{ detail.id_doc }}"/>
+                          {% else %}
+                          <input hidden name="add" value="1"/>
+                          {% endif %}
+
+                          <table style="width:99%" class="table table-bordered">
+                            <tbody>
+                              {% if add %}
+                              <tr>
+                                <th>Fichiers</th>
+                                <td><input style="width:96.5%;" type="file" name="files[]" multiple="multiple" required /></td>
+                              </tr>
+                              {% endif %}
+                              <tr>
+                                <th>Titre</th>
+                                <td><input style="width:96.5%;" type="text" name="titre" value="{{ detail.titre_doc }}" required /></td>
+                              </tr>
+                              <tr>
+                                <th>Type</th>
+                                <td><input style="width:96.5%;" type="text" name="type" value="{{ detail.type_doc }}"/></td>
+                              </tr>
+                              <tr>
+                                <th>Description</th>
+                                <td><input style="width:96.5%;" type="text" name="description" value="{{ detail.description_doc }}"/></td>
+                              </tr>
+                              <tr>
+                                <th>Mots clés</th>
+                                <td><input style="width:96.5%;" type="text" name="motscles" value="{{ detail.mots_cles_doc }}"/></td>
+                              </tr>
+                              <tr>
+                                <th>Langue</th>
+                                <td><input style="width:96.5%;" type="text" name="langue" value="{{ detail.langue_doc }}"/></td>
+                              </tr>
+                              <tr>
+                                <th>Date de publication</th>
+                                <td><input style="width:96.5%;" type="text" name="date_pub" value="{{ detail.date_publi_doc }}"/></td>
+                              </tr>
+                              <tr>
+                                <th>Date d'envoi</th>
+                                <td><input style="width:96.5%;" type="text" name="date_envoi" value="{{ detail.date_envoi_doc }}"/></td>
+                              </tr>
+                              <tr>
+                                <th>Mission / Doctorant</th>
+                                <td>
+                                  <select style="width:99.5%;" name="mission-doctorant" required >
+                                    {% for mission in list_missions %}
+                                    <option {% if (detail.mission.id_mission == mission.id_mission) and (detail.doctorant.NumUtilisateur == mission.NumUtilisateur) %}selected{% endif %} value="{{ mission.id_mission }}~{{ mission.NumUtilisateur }}">{{ mission.objet_mission }} - {{ mission.PrenomUtilisateur }} {{ mission.NomUtilisateur }}</option>
+                                    {% endfor %}
+                                  </select>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="2">
+                                  <button type="reset" class="btn btn-default"><i class="fa fa-ban"></i> Annuler</button>
+                                  {% if add %}
+                                  <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Ajouter</button>
+                                  {% else %}
+                                  <button type="submit" class="btn btn-primary"><i class="fa fa-refresh"></i> Modifier</button>
+                                  {% endif %}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </form>
+                      </div>
+                    </div>
+
+                    {% else %}
+
+                    <div class="panel panel-default">
+                      <header class="center">
+                        <h3>{{ detail.titre_doc }}</h3>
+                      </header>
+                      <div class="panel-body center">
+                        <br/>
+                        <a class="btn btn-primary" target="_blank" href="Content/documents/{{ detail.nom_fichier }}"><i class="fa fa-download"></i> Télécharger</a>
+                        <br/>
+                        <br/>
+                        <table style="width:99%" class="table table-bordered">
+                          <tbody>
+                            <tr>
+                              <th>Titre</th>
+                              <td>{{ detail.titre_doc }}</td>
+                            </tr>
+                            <tr>
+                              <th>Type</th>
+                              <td>{{ detail.type_doc }}</td>
+                            </tr>
+                            <tr>
+                              <th>Description</th>
+                              <td>{{ detail.description_doc }}</td>
+                            </tr>
+                            <tr>
+                              <th>Mots clés</th>
+                              <td>{{ detail.mots_cles_doc }}</td>
+                            </tr>
+                            <tr>
+                              <th>Langue</th>
+                              <td>{{ detail.langue_doc }}</td>
+                            </tr>
+                            <tr>
+                              <th>Date de publication</th>
+                              <td>{{ detail.date_publi_doc }}</td>
+                            </tr>
+                            <tr>
+                              <th>Date d'envoi</th>
+                              <td>{{ detail.date_envoi_doc }}</td>
+                            </tr>
+                            <tr>
+                              <th>Mission</th>
+                              <td><a href="missions.php?mission={{ detail.url_mission }}">{{ detail.mission.objet_mission }}</a></td>
+                            </tr>
+                            <tr>
+                              <th>Doctorant</th>
+                              <td><a href="doctorants.php?id={{ detail.url_doctorant }}">{{ detail.doctorant.PrenomUtilisateur ~ ' ' ~ detail.doctorant.NomUtilisateur }}</a></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="center">
+                          <a class="btn btn-warning" href="documents.php?edit={{ detail.url }}"><i class="fa fa-edit"></i> Modifier</a>
+                        </div>
+                        <br/>
+                        <hr/>
+                        <br/>
+                        <form action="" method="post" class="center p-delete">
+                            <input type="checkbox" required name="delete" value="{{ detail.id_doc }}" />
+                            Confirmer la suppression<br/>
+                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Supprimer</button>
+                        </form>
+                      </div>
+                    </div>
+
+                    {% endif %}
+
+                  {% endif %}
+                    <!-- fin #zone1 -->
+                </div>
+                <!-- fin #avec_nav_avec_encadres .contenu -->
+
+
+
+                <hr class="separateur_sections_page" />
+
+
+                <div id="encadres">
+
+                    {% include 'includes/$encadres.html' %}
+
+                </div>
+                <!-- #encadres -->
+
+            </div>
+            <!-- #contenu_deco -->
+            <div class="separateur"></div>
+
+        </div>
+        <!-- #page -->
+    </div>
+    <!-- #page_deco -->
+
+    <div class="bordure"></div>
+    <div id="pied_deco">
+
+        {% include 'includes/$pied_deco.html' %}
+
+    </div>
+    <!-- #pied_deco -->
+
+</body>
+
+</html>
