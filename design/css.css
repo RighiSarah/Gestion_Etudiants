@@ -1,0 +1,25 @@
+#bandeau_illustration {
+		background-image : url(http://dis.univ-lyon2.fr/medias/photo/disicom_1404291680642-jpg);
+	}
+
+
+/* Personnalisation du template */
+
+a,
+.contenu a:hover,
+.style2 h2 {
+    color: #2C58A5;
+}
+
+#bandeau_deco,
+.onglet_1,
+#menu_principal li,
+#pied_deco,
+#menu_principal ul a:hover,
+#toutesactualites a {
+    background-color: #2C58A5;
+}
+
+#pied_page {
+    border-top-color: #2C58A5;
+}

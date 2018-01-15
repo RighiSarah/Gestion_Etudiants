@@ -54,33 +54,22 @@
                                 <header>
                                     <h3>Selection d'un Groupe et d'une promotion</h3>
                                 </header>
-                                <h4><b><font color=black><!--<i class="fa fa-check-square"></i> --> Choix du groupe</font></b></h4>
+                                <br/>
+                                <h4><b><font color=black><!--<i class="fa fa-list-alt"></i> --> Choix de la promotion ( 1996-2017 )</font></b></h4>
+                            <form action="req.php" method="post">
+                                Promotion :  <input type="text" name="Promotion" >
+         
+                                       
+                            <br/>
+                             <br/>
+                               
+                                 <h4><b><font color=black><!--<i class="fa fa-check-square"></i> --> Choix du groupe (1 ou 2)</font></b></h4>
                                 
                                <!-- <p>(cocher les 2 cases pour afficher l'ensemble des élèves)</p> -->
-                                    <form action="req.php" method="post">
+                                 
                                            <!-- <input type="checkbox" name="groupe" value="G1"> Groupe 1
                                             <input type="checkbox" name="groupe" value="G2"> Groupe 2 -->
                                    Groupe :  <input type="text" name="groupe" > 
-                                    
-                            <br/>
-                             <br/>
-                                <h4><b><font color=black><!--<i class="fa fa-list-alt"></i> --> Choix de la promotion</font></b></h4>
-                               
-                                   Promotion :  <input type="text" name="Promotion" > 
-                                <!-- <select name="Promotion">
-                                    <option value="2007">Promotion: 2007</option>
-                                    <option value="2008">Promotion: 2008</option>
-                                    <option value="2009">Promotion: 2009</option>
-                                    <option value="2010">Promotion: 2010</option>
-                                    <option value="2011">Promotion: 2011</option>
-                                    <option value="2012">Promotion: 2012</option>
-                                    <option value="2013">Promotion: 2013</option>
-                                    <option value="2014">Promotion: 2014</option>
-                                    <option value="2015">Promotion: 2015</option>
-                                    <option value="2016">Promotion: 2016</option>
-                                    <option value="2017">Promotion: 2017</option>
-                                    <option value="2018">Promotion: 2018</option>
-                                </select> -->
 
                                 <br/><br/><button class="btn btn-primary" action="list_groupe.php" type="submit"><i class="fa fa-check"></i> Valider</button></br></br>
                             </form>
@@ -172,7 +161,7 @@
                             {% if display_form_update %}
 
                             <header>
-                                <h3>Modification : {{ info_etudiant.PrenomUtilisateur }} {{ info_etudiant.NomUtilisateur }}</h3>
+                                <h3>Modification : {{ info_etudiant.PrenomUtilisateur }}{{ info_etudiant.NomUtilisateur }} </h3>
                             </header>
                             <div class="panel-body">
                                 <form action="" method="post" enctype="multipart/form-data">

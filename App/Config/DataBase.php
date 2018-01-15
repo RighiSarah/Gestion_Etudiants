@@ -5,9 +5,9 @@ if(PROD){
   # Configuration pour execution sur le Localhost de M. Boussaid
   $driver = 'mysql';
   $host = 'localhost';
-  $port = 8889;
+  $port = 3306;
   $user = 'root';
-  $password = 'root';
+  $password = '';
   $database = 'PROJET_ETUDIANTS';
 }
 else{

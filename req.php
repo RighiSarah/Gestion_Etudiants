@@ -3,7 +3,7 @@
 <head>
 
         <?php include 'Templates/includes/$head.html' ;?>
-
+        
     </head>
 	<body class="pageaccueil accueil">
 
@@ -124,8 +124,21 @@ $stmt->execute();
     while($rowset = $stmt->fetch()){?>
 	<tr>
 		<td><?php echo '<a href="details_req.php?idU='.$rowset['NumUtilisateur'].'">'.$rowset['NomUtilisateur'].'</a>'; ?></td>
-    <td><?php echo '<a href="details_req.php?idpr='.$rowset['PrenomUtilisateur'].'">'.$rowset['PrenomUtilisateur'].'</a>'; ?></td>
-		<td><?php echo $rowset['EmailUtilisateur']; ?></td>
+    <td><?php echo '<p>'.$rowset['PrenomUtilisateur'].'</p>'; ?></td>
+		<td><?php 
+                    $Nom = $rowset['NomUtilisateur'];
+                    $Prenom = $rowset['PrenomUtilisateur'];
+                    $Num = $rowset['NumUtilisateur'];
+                    $filename = "photos/Etudiants/".strtoupper($Nom)." ".strtoupper(substr($Prenom,0,1)).".JPG";
+                                if(file_exists($filename))
+                                    {
+                                   echo '<a href="details_req.php?idU='.$Num.'"><img src="photos/Etudiants/'.strtoupper($Nom).' '.strtoupper(substr($Prenom,0,1)).'.JPG "</a>';
+                                    }
+                                    else
+                                    {
+                                     echo '<img src="photos/Etudiants/DEFAULT.JPG "';
+                                    } 
+                      //echo $rowset['EmailUtilisateur']; ?></td>
 	</tr>
 		
 	<?php }
@@ -142,6 +155,7 @@ catch(PDOException $e)
     }  
 
 ?>
+                              <a href="App/" > <img src="" /></a>
        </tbody>
                             </table>                           
                                 

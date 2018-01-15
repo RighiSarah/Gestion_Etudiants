@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- VERSION DU DIMANCHE 29 NOVEMBRE 2015 -->
+<module>
+	<!-- Partie parametres de votre module -->
+	<parametres>
+		<!-- Votre module utilise t-il un sous-menu (bandeau latérale) ? (Cette fonction ne semble plus utilisée) -->
+		<!-- 0 = Non / 1 = Oui -->
+		<hasSideBar>0</hasSideBar>
+		
+		<!-- Votre module utilise t-il une feuille de style optionelle ? Si oui, respectez l'arborescence -->
+		<!-- Le CSS général est géré par l'équipe Intranet -->
+		<!-- 0 = Non / 1 = Oui -->
+		<hasCSS>1</hasCSS>
+		
+		<!-- Votre module utilise t-il du JavaScript ? Si oui, respectez l'arborescence -->
+		<!-- 0=Non / 1=Oui -->
+		<hasJS>1</hasJS>
+		
+		<!-- Votre module a t-il besoin de JQuery et JQueryUI ? Si oui, ils seront chargés dans l'header -->
+		<!-- 0 = Non / 1 = Oui -->
+		<needJQuery>0</needJQuery>
+		
+		<!-- Nom de lapplication à afficher sur l'Intranet sur la liste de modules -->
+		<appName>Gestion des trombinoscopes</appName>
+		
+		<!-- Nom du dossier dans lequel seront installés les fichiers de votre module  -->
+		<!-- Par exemple, si vous mettez "GestionSyllabus", lors de l'installation un   -->
+		<!-- dossier GestionSyllabus sera créé à la racine de l'intranet et il contiendra -->
+		<!-- tous les fichiers de votre module. Ce paramêtre correspond au champs route   -->
+		<!-- de la table Module de la BDD de l'intranet. -->
+		<!-- N'utilisez pas de caracteres speciaux, ni d'espaces, merci. -->
+		<appSlug>GestionTrombinoscopes</appSlug>		
+	</parametres>
+	
+	<!-- Partie lien de votre module -->
+	<!-- Dans cette partie, on a les liens du menu (bleu à gauche) de votre module. Vous allez -->
+	<!-- donner la hiérarchie du menu ici, ainsi que les utilisateurs autorisés a y acceder. -->
+	<!-- Cette partie permet de générer le menu bleu de gauche à la volée (à faire l'an prochain) -->
+	<!-- Et permet de gérer les accès aux pages -->
+	<!-- Merci de la remplir sérieusement sinon l'intégration foirera -->
+	<liens id="1">
+		<nomLien>Test</nomLien> <!--Nom à afficher pour le lien 1 -->
+		<route>/testTrobi/testTrombi.php</route>
+		<idParent>0</idParent> <!-- 0 s'il s'agit de la page principale, sinon id du lien parent -->
+		<droit>1</droit> <!-- Les comptes administrateurs de l'intranet pourront acceder à ce lien -->
+		<droit>2</droit> <!-- ... -->
+		<droit>3</droit> <!-- ... -->
+		<droit>4</droit> <!-- ... -->
+		<droit>5</droit> <!-- ... -->
+		<droit>6</droit> <!-- ... -->
+	</liens>
+</module>

@@ -1,0 +1,40 @@
+/* encadré du panier */
+div.vue_panier {
+margin:7px;
+}
+
+div.vue_panier ul {
+list-style:none;
+}
+
+/* vue de détail du panier */
+div.detail_panier {
+list-style-type:none;
+margin-top:15px;
+}
+
+div.detail_panier ul {
+list-style:none;
+}
+
+div.detail_panier li {
+background:#ddc;
+margin:2px;
+padding:5px;
+position:relative;
+}
+
+div.detail_panier li a {
+background:transparent;
+}
+
+div.detail_panier li div {
+position:absolute;
+right:10px;
+}
+
+img.action_panier {
+cursor:pointer;
+margin:0 2px;
+vertical-align:middle;
+}

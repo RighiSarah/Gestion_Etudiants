@@ -112,6 +112,18 @@ catch(PDOException $e)
                     <!-- wooddy wood Pecker -->
                                 
                                 <div class="panel panel-default center">
+                                    <?php
+                                  $filename = "photos/Etudiants/".strtoupper($Nom)." ".strtoupper(substr($Prenom,0,1)).".JPG";
+                                if(file_exists($filename))
+                                    {
+                                   echo '<img src="photos/Etudiants/'.strtoupper($Nom).' '.strtoupper(substr($Prenom,0,1)).'.JPG "';
+                                    }
+                                    else
+                                    {
+                                     echo '<img src="photos/Etudiants/DEFAULT.JPG "';
+                                    } 
+                                    ?>
+                                 <?php ?>                                                                                
                                 <header><h3> <i class="fa fa-database"> </i> <?php echo "$Prenom $Nom"; ?></h3></header>
                                 
                                 <br><?php echo $formation; ?><br>

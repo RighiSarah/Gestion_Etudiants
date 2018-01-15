@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/Application2/App/Model/Documents.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Config/General.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Config/Engine.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Controller/Manager.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Config/Model.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/index.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Config/Controller.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Model/Doctorants.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Config/DataBase.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/connect_db.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Model/Etudiants.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/req.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/requetes.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Config/Security.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Model/Reunions.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Model/User.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/Templates/etudiants.htmlOK.html</file>
+            <file>file:/C:/xampp/htdocs/Application2/Templates/home.html</file>
+            <file>file:/C:/xampp/htdocs/Application2/envoi_csv.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Model/Master.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Config/Session.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Controller/Slave.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/details_req.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Controller/Worker.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Model/Missions.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Controller/Auth.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/etudiants.php</file>
+            <file>file:/C:/xampp/htdocs/Application2/Templates/etudiants.html</file>
+            <file>file:/C:/xampp/htdocs/Application2/App/Config/Vendor.php</file>
+        </group>
+    </open-files>
+</project-private>

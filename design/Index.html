@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+	<head>
+
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+		<title>Page de test</title>
+
+		<link rel="shortcut icon" type="image/x-icon" href="http://dis.univ-lyon2.fr/jsp/css/www/images/favicon.ico" />
+		<link rel="icon" type="image/png" href="http://dis.univ-lyon2.fr/jsp/css/www/images/favicon.png" />
+		<!-- link rel="stylesheet" type="text/css" href="http://dis.univ-lyon2.fr/wro/screenstyles_modele.css" / -->
+		<link rel="stylesheet" type="text/css" media="screen" href="reset.css" title="defaut" />
+		<link rel="stylesheet" type="text/css" media="screen" href="ecran.css" title="defaut" />
+		<link rel="stylesheet" type="text/css" media="screen" href="mediatheque.css" title="defaut" />
+		<link rel="stylesheet" type="text/css" media="screen" href="panier.css" title="defaut" />
+		<link rel="stylesheet" type="text/css" media="screen" href="lightbox.css" title="defaut" />
+
+		<style type="text/css" media="screen">
+
+
+		#bandeau_illustration {
+			background-image : url("Votre lien ici");
+		}
+
+
+		/* Personnalisation du template */
+		a,
+		.contenu a:hover,
+		.style2 h2 {
+			color: #2C58A5;
+		}
+
+		#bandeau_deco,
+		.onglet_1,
+		#menu_principal li,
+		#pied_deco,
+		#menu_principal ul a:hover,
+		#toutesactualites a {
+			background-color: #2C58A5;
+		}
+
+		#pied_page {
+			border-top-color: #2C58A5;
+		}
+
+		</style>
+	</head>
+	
+	<body class="pageaccueil accueil">
+
+		<div class="bordure"></div>
+
+		<div id="profils_preferences">
+			<div id="profils_preferences_deco">
+				<p id="acces_direct"><a href="#avec_nav_avec_encadres" accesskey="s">Acc&egrave;s direct au contenu</a></p>
+				
+			</div> <!-- #profils_preferences_deco -->
+		</div> <!-- #profils_preferences -->
+
+		<div id="bandeau_deco">
+			<div id="bandeau">	
+				<form id="recherche_simple" action="http://dis.univ-lyon2.fr/servlet/com.jsbsoft.jtf.core.SG" method="post">
+					<div>
+						<input type="hidden" name="#ECRAN_LOGIQUE#" value="RECHERCHE" />
+						<input type="hidden" name="PROC" value="RECHERCHE" />
+						<input type="hidden" name="ACTION" value="VALIDER" />
+						<input type="hidden" name="LANGUE" value="0" />
+						<input type="hidden" name="LANGUE_SEARCH" value="0" />
+						<input type="hidden" name="CODE_RUBRIQUE" value="" />
+						<input type="hidden" name="CODE_SITE_DISTANT" value="" />
+						<input type="hidden" name="SEARCH_SOUSRUBRIQUES" value="true" />
+						<input type="hidden" name="SEARCH_EXCLUSIONOBJET" value="" />
+						<input type="hidden" name="RH" value="1358239694591" />
+						<input type="hidden" name="OBJET" value="TOUS" />
+
+						<label for="MOTS_CLEFS" accesskey="4">Recherche</label>
+						<input name="QUERY" type="text" id="MOTS_CLEFS" class="champ-saisie" value="" onblur="if (this.value == '') {this.value = 'Rechercher';}" onfocus="if (this.value == 'Rechercher') {this.value = '';}" title="Rechercher par mots-cl&eacute;s" />
+						<input type="submit" value="ok" />
+					</div>
+
+					<!-- <p id="vers_recherche_avancee"><a href="http://dis.univ-lyon2.fr/jsp_usinetemplate/recherche_avancee.jsp?RH=1358239694591">Outil de recherche</a></p> -->
+				</form>
+				
+				<a href="http://dis.univ-lyon2.fr/fr/" id="retour_accueil" title="Retour &agrave; la page d'accueil" accesskey="1"><img src="http://dis.univ-lyon2.fr/images_modele/usine-logo-2014.png" alt="Département Informatique et Statistique" title="Retour &agrave; la page d'accueil" /></a>
+				
+				<span class="portails">
+					Portails : <a href="http://www.univ-lyon2.fr/">www</a> - <a href="http://etu.univ-lyon2.fr">&eacute;tudiants</a> - <a href="http://intranet.univ-lyon2.fr">personnels</a>
+				</span><!-- #portails -->
+				
+				<span class="bandeau_titre">
+					Ici est le titre
+				</span><!-- #bandeau_titre -->
+			</div> <!-- #bandeau -->
+		</div> <!-- #bandeau_deco -->
+		
+		<div id="page_deco">
+
+			<div id="page">
+
+			
+				<div id="navigation"></div> <!-- #navigation -->
+
+				<hr class="separateur_sections_page"/>
+				<div id="contenu_deco">
+				
+					<div id="bandeau_illustration"></div>
+				
+				
+				
+					<div id="menu">
+					
+						<ul id="menu_principal">
+						
+							<li>
+								<a href="http://dis.univ-lyon2.fr/fr/" title="Retour &agrave; la page d'accueil">
+									Accueil
+								</a>
+							</li>
+							<li><a href="http://dis.univ-lyon2.fr/fr/le-departement/" >Le Département</a>
+								<ul>
+									<li><a href="http://dis.univ-lyon2.fr/fr/le-departement/mediatheque/" >Médiathèque</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/le-departement/equipe-enseignante/" >Equipe enseignante</a></li>
+								</ul>
+							</li>
+							<li><a href="http://dis.univ-lyon2.fr/fr/nos-formations/" >Nos formations</a>
+								<ul>
+									<li><a href="http://dis.univ-lyon2.fr/fr/nos-formations/formations-internationnales/" >Formations internationnales</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/nos-formations/formations-continues/" >Formations continues</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/nos-formations/formations-initiales/" >Formations initiales</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/nos-formations/procedure-de-recrutement/" >Procedure de recrutement</a></li>
+								</ul>
+							</li>
+							<li><a href="http://dis.univ-lyon2.fr/fr/international/" >International</a>
+								<ul>
+									<li><a href="http://dis.univ-lyon2.fr/fr/international/accueil-d-etudiants-etrangers/" >Accueil d’étudiants étrangers</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/international/stages-a-l-etranger/" >Stages à l’étranger</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/international/etudier-a-l-etranger/" >Étudier à l’étranger</a></li>
+								</ul>
+							</li>
+							<li><a href="http://dis.univ-lyon2.fr/fr/espace-etudiants/" >Espace étudiants</a>
+								<ul>
+									<li><a href="http://dis.univ-lyon2.fr/fr/espace-etudiants/annuaire-des-anciens/" >Annuaire des anciens</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/espace-etudiants/emplois-du-temps/" >Emplois du temps</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/espace-etudiants/offres-de-stages-et-d-emplois/" >Offres de stages et d’emplois</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/espace-etudiants/vie-etudiante/" >Vie étudiante</a></li>
+								</ul>
+							</li>
+							<li><a href="http://dis.univ-lyon2.fr/fr/espace-entreprises/" >Espace entreprises</a>
+								<ul>
+									<li><a href="http://dis.univ-lyon2.fr/fr/espace-entreprises/deposer-une-offre-de-stage-ou-d-emploi/" >Déposer une offre de stage ou d’emploi</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/espace-entreprises/nous-soutenir-avec-la-taxe-d-apprentissage/" >Nous soutenir avec la Taxe d’Apprentissage</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/espace-entreprises/confier-une-mission-a-junior-ewebbi/" >Confier une mission à Junior Ewebbi</a></li>
+									<li><a href="http://dis.univ-lyon2.fr/fr/espace-entreprises/partenaires/" >Partenaires</a></li>
+								</ul>
+							</li>
+							<li><a href="http://dis.univ-lyon2.fr/fr/actualite/" >Actualité</a>
+								<ul>
+									<li><a href="http://dis.univ-lyon2.fr/fr/actualite/actualite-type/"  onclick="window.open(this.href);return false;">Actualité Type</a></li>
+								</ul>
+							</li>
+							<li><a href="http://dis.univ-lyon2.fr/fr/contact/" >Contact</a></li>
+							<li><a href="http://dis.univ-lyon2.fr/fr/intranet/" >Intranet</a></li>
+						</ul>
+						
+						<div class="separateur"></div>
+					</div> <!-- #menu --> 
+				
+				
+					<div id="avec_nav_avec_encadres" class="contenu">
+		
+						<div id="social-sharing" class="addthis_toolbox">
+						&nbsp;
+						</div>
+
+						<div id="zone1_accueilsite">
+							<h2 style="text-align: center;"><strong><em>Pr&eacute;sentation du D&eacute;partement</em></strong></h2><div style="text-align: justify;">Lorem Ipsum</div>
+						</div><!-- fin #zone1 -->
+						<div id="zone2">
+							<div id="contenu_zone2">
+								<p><em><strong><br /></strong></em></p><h2 style="text-align: center;"><em><strong>Historique des formations</strong></em></h2><ul>    <li><strong><span style="color: black;">1986 </span></strong><span style="color: black;">: Cr&eacute;ation du DESS SISE</span><strong><span style="color: black;"><br />    </span></strong></li>    <li><strong><span style="color: black;">1991</span></strong><span style="color: black;"> : Cr&eacute;ation du DESS OPSIE</span><strong><span style="color: black;"><br />    </span></strong></li>
+							</div><!-- fin #contenu_zone2 -->
+						</div>
+						<div id="zone3">
+							<div id="contenu_zone3">
+								<p><em><strong><br/></strong></em></p><h2 style="text-align: center;"><em><strong>Equipe enseignante du DIS</strong></em></h2><p style="margin: 10px 0px 0.21cm; padding: 0px; direction: ltr; widows: 2; orphans: 2; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 20px; background-color: rgb(255, 255, 255);"><a  href="/fr/le-departement/equipe-enseignante/"><strong>Liste des intervenants de nos formations actuelles</strong></a><em><strong><br /><br /><br /></strong></em></p><h2 style="text-align: center;"><em><strong>M&eacute;diath&egrave;que</strong></em></h2><ul>    <li><a href="/medias/fichier/fiches-dis-generale-2_1391093542636-pdf" ><strong>Maquette du DIS</strong></a></li>    <li><a href="/medias/photo/1-logo-disicom_1391092878263-jpg" ><strong>Logo DIS</strong></a></li>    <li><a href="/fr/le-departement/videotheque-dis-556853.kjsp?RH=1390916834096" ><strong>Pr&eacute;sentations vid&eacute;os du d&eacute;partement et de ses activit&eacute;s</strong></a></li></ul><br />
+							</div><!-- fin #contenu_zone3 -->
+						</div>
+						<div class="liens_pied_pageaccueil">
+							
+						</div>
+						<br/>
+						<br/>
+						<p id="date_modification">mise &agrave; jour le 10 novembre 2014</p>
+						
+						
+
+					</div> <!-- fin #avec_nav_avec_encadres .contenu -->
+						
+					<hr class="separateur_sections_page"/>
+						
+						
+					<div id="encadres">
+			
+							<div class="encadre_rubrique firstencadre">
+								<div class="encadre_rubrique_contenu">
+									<br/><img title="" alt="" style="margin: 0px 5px; width: 153px; height: 138px;" src="http://dis.univ-lyon2.fr/medias/photo/logo-dis-icom_1404207711713-jpg" />
+								</div> <!-- .encadre_rubrique_contenu -->
+							</div> <!-- .encadre_rubrique -->
+
+
+							<div class="encadre_fiche">
+								<div class="encadre_fiche_contenu">
+									<h3 style="margin: 0px; padding: 2px 0px 1px 4px; font-family: arial; font-size: 13px; border-bottom: 2px solid rgb(39, 104, 170); font-variant: small-caps; text-align: center;"><strong>Titre</strong></h3>
+									&nbsp;
+										<div style="text-align: center;">
+										&nbsp;&nbsp; 
+											<a  class="lien_externe" title="l3 ids (nouvelle fen&ecirc;tre)" onclick="window.open(this.href);return false;" href="https://www.google.com/calendar/embed?&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;hl=fr&amp;bgcolor=%23FFFFFF&amp;src=o4v690ukfsmapnghv2nsa1m90s%40group.calendar.google.com&amp;color=%23BE6D00&amp;ctz=Europe%2FParis" >Test1</a>
+											<br />
+											&nbsp; &nbsp;
+											<a  class="lien_externe" title="m1 informatique (nouvelle fen&ecirc;tre)" onclick="window.open(this.href);return false;" href="https://www.google.com/calendar/embed?&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;hl=fr&amp;bgcolor=%23FFFFFF&amp;src=oiij44825r9776g538a6q5e4gs%40group.calendar.google.com&amp;color=%231B887A&amp;ctz=Europe%2FParis" >Test2</a>
+											<br />
+											&nbsp; &nbsp;
+											<a  class="lien_externe" title="m2 sise (nouvelle fen&ecirc;tre)" onclick="window.open(this.href);return false;" href="https://www.google.com/calendar/embed?&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;hl=fr&amp;bgcolor=%23FFFFFF&amp;src=l532b25pideg98b0ghag66i5qs%40group.calendar.google.com&amp;color=%23B1365F&amp;ctz=Europe%2FParis" >Test3</a>
+											<br />
+											&nbsp; &nbsp;
+											<a  class="lien_externe" title="m2 iidee - g1 (nouvelle fen&ecirc;tre)" onclick="window.open(this.href);return false;" href="https://www.google.com/calendar/embed?&amp;mode=WEEK&amp;height=600&amp;wkst=2&amp;hl=fr&amp;bgcolor=%23FFFFFF&amp;src=dfivjf5ons124vpfa8mv7t6smo%40group.calendar.google.com&amp;color=%23182C57&amp;ctz=Europe%2FParis" >Test4</a>
+											<br />&nbsp; &nbsp;
+										</div>
+									<h3 style="margin: 0px; padding: 2px 0px 1px 4px; font-family: arial; font-size: 13px; border-bottom: 2px solid rgb(39, 104, 170); font-variant: small-caps; text-align: center;"><strong>Titre 2</strong></h3>
+									<a href="../../../../fr/nos-formations/formations-initiales/licence-bidisciplinaire-de-sciences-economiques-et-de-gestion-mention-idea-l1-et-l2--556809.kjsp?RH=1358239694591"><br /></a>
+									<div style="text-align: center;">
+										<a href="../../../../fr/nos-formations/formations-initiales/licence-bidisciplinaire-de-sciences-economiques-et-de-gestion-mention-idea-l1-et-l2--556809.kjsp?RH=1358239694591">Test1</a>
+									</div>
+									<div style="text-align: center;">
+										<a href="../../../../fr/nos-formations/formations-initiales/licence-idea-parcours-ids-informatique-decisionnelle-et-statistique-l3-preparation-au-master-d-informatique-specialite-ids-556811.kjsp?RH=1358239694591">Test2</a>
+										<br />
+										<a href="../../../../fr/nos-formations/formations-initiales/premiere-annee-du-master-d-informatique-m1-tronc-commun-options-de-pre-specialisation-dont-ids--556812.kjsp?RH=1358239694591">Test3</a>
+										<br />
+										&nbsp;
+										</div>
+									<h3 style="margin: 0px; padding: 2px 0px 1px 4px; font-family: arial; font-size: 13px; border-bottom: 2px solid rgb(39, 104, 170); font-variant: small-caps; text-align: center;">&nbsp;<strong>&nbsp; Test4</strong></h3>
+									<br />
+									<div style="text-align: center;">
+										<a href="/jsp_usinetemplate/liste_actualites.jsp?RH=1358239694591" >Offres de stage et d&#39;emploi</a>
+										<br />
+										&nbsp;
+									</div>
+									<h3 style="padding: 2px 0px 1px 4px; font-family: arial; font-size: 13px; border-bottom: 2px solid rgb(39, 104, 170); font-variant: small-caps; text-align: center;"><strong>Titre 3</strong></h3>
+									<div style="text-align: center;"><a href="/jsp_usinetemplate/liste_actualites.jsp?RH=1358239694591" ><img src="http://dis.univ-lyon2.fr/medias/photo/flux-rss_1405499583216-png" style="width:50px;height:50px;margin:0px 5px;border:px solid;float:;" alt="" title="" /></a><a  class="lien_externe" title="https://twitter.com/dis_lyon2 (nouvelle fen&ecirc;tre)" onclick="window.open(this.href);return false;" href="https://twitter.com/dis_lyon2" ><img src="http://dis.univ-lyon2.fr/medias/photo/twitter1_1405499613167-jpg" style="width:50px;height:50px;margin:0px 5px;border:px solid;float:;" alt="" title="" /></a>
+									</div>
+								</div>  <!-- .encadre_fiche_contenu -->
+							</div> <!-- .encadre_fiche -->
+					</div> <!-- #encadres --> 
+				</div> <!-- #contenu_deco -->
+				<div class="separateur"></div>
+			</div> <!-- #page -->
+		</div> <!-- #page_deco -->
+		
+		<div class="bordure"></div>
+		<div id="pied_deco">
+			<div id="pied_page">	
+				<ul id="boutons_actions">
+					<li id="haut_page"><a href="#page">haut de la page</a></li>
+					<li id="plan_du_site"><a href="/jsp_usinetemplate/plan_du_site.jsp?RH=1358239694591">plan du site</a></li>
+				</ul>
+				<span>Université Lumière Lyon 2</span>
+			</div><!-- #pied_page -->
+		</div> <!-- #pied_deco -->
+	</body>
+</html>
