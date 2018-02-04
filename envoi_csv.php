@@ -64,9 +64,9 @@ $uploadfile=$uploaddir.basename($_FILES['myFiles']['name']);
 move_uploaded_file($_FILES['myFiles']['tmp_name'], $uploadfile);
 $ligne = 1; // compteur de ligne
 $fic = fopen($uploadfile, "a+");
-$servername="localhost:8889";
-$username="mlatreche";
-$password="MLAT74";
+$servername="localhost:3306";
+$username="root";
+$password="";
 $dbname="PROJET_ETUDIANTS";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -81,7 +81,7 @@ $champs = count($tab);//nombre de champ dans la ligne en question
 if ($ligne !==1){ $premligne=false;}
 $ligne ++;
 if (!$premligne){ 
-echo "<b> Les " . $champs . " champs de la ligne " . $ligne . " sont :</b><br />";
+//echo "<b> Les " . $champs . " champs de la ligne " . $ligne . " sont :</b><br />";
 
 
 //affichage de chaque champ de la ligne en question
@@ -92,10 +92,32 @@ echo $tab[$i] . ", ";
 
 }
 
-$Nom=$tab[0];
-$Prenom=$tab[1];
-$Email=$tab[2];
-$conn->exec("INSERT INTO utilisateur (TypeUtilisateur, NomUtilisateur,PrenomUtilisateur,EmailUtilisateur,idRole) VALUES ('T', ".$conn->quote($Nom).",".$conn->quote($Prenom).",".$conn->quote($Email).",2)");
+$Type=$tab[0];
+$Nom=$tab[1];
+$Prenom=$tab[2];
+$DateNaissance=$tab[3];
+$AdrRue=$tab[4];
+$AdrCP=$tab[5];
+$AdrVille=$tab[6];
+$AdrPays=$tab[7];
+$Tel=$tab[8];
+$Email=$tab[9];
+$Login=$tab[10];
+$Password=$tab[11];
+$Photo=$tab[12];
+$Sexe=$tab[13];
+$Nationalite=$tab[14];
+$idRole=$tab[15];
+
+$conn->exec("INSERT INTO utilisateur (TypeUtilisateur, NomUtilisateur,PrenomUtilisateur,"
+        . "DateNaissanceUtilisateur,AdrRueUtilisateur,AdrCpUtilisateur,AdrVilleUtilisateur,"
+        . "AdrPaysUtilisateur,telUtilisateur,EmailUtilisateur,LoginUtilisateur,PassUtilisateur,"
+        . "photoUtilisateur,sexeUtilisateur,nationaliteUtilisateur,idRole) "
+        . "VALUES (".$conn->quote($Type).",".$conn->quote($Nom).",".$conn->quote($Prenom).",".$conn->quote($DateNaissance).","
+        .$conn->quote($AdrRue).",".$conn->quote($AdrCP).",".$conn->quote($AdrVille).",".$conn->quote($AdrPays).","
+        .$conn->quote($Tel).",".$conn->quote($Email).",".$conn->quote($Login).",".$conn->quote($Password).","
+        .$conn->quote($Photo).",".$conn->quote($Sexe).",".$conn->quote($Nationalite).",".$conn->quote($idRole).")");
+
 //$stmt->bindValue(":Nom", $Nom);
 // $stmt->bindValue(":Prenom", $Prenom);
 // $stmt->bindValue(":Email", $Email);

@@ -1,0 +1,5 @@
+TypeUtilisateur;NomUtilisateur;PrenomUtilisateur;DateNaissanceUtilisateur;AdrRueUtilisateur;AdrCPUtilisateur;AdrVilleUtilisateur;AdrPaysUtilisateur;telUtilisateur;EmailUtilisateur;LoginUtilisateur;PassUtilisateur;photoUtilisateur;sexeUtilisateur;nationaliteUtilisateur;idRole
+O;IDELASRI;Amine;1995:04:28;rue cardinal;69005;lyon;France;606060606;amine@idel.com;idelasri;idelasri;IDELASRI A.jpg;M;Marocaine;5
+T;IDEL;Amine;1992:05:19;gerlier;69000;lyon;France;1014025478;idel@mail.com;amine;amine;BELAID A.jpg;M;Marocaine;4
+T;Aymen;Aser;1995:02:02;rue de paris;93800;epinay;France;33615457895;aymen@mail.com;aymen;aymen;;M;Francaise;5
+O;Younes;you;1994:03:03;lyon;69000;lyon;France;15455525584;mail@mail.com;younes;younes;;M;Francaise;3
